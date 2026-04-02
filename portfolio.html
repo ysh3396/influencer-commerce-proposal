@@ -420,6 +420,76 @@
     color: var(--muted);
     line-height: 1.7;
   }
+  .career-section {
+    background: linear-gradient(180deg, #fffaf5 0%, #ffffff 100%);
+  }
+  .career-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .career-main,
+  .career-side {
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+  }
+  .career-main h3,
+  .career-side h3 {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .career-lead {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 22px;
+  }
+  .career-highlight-list {
+    display: grid;
+    gap: 14px;
+  }
+  .career-highlight {
+    border-left: 3px solid var(--c200);
+    padding-left: 14px;
+  }
+  .career-highlight .title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .career-highlight .desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .career-points {
+    display: grid;
+    gap: 12px;
+  }
+  .career-point {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .career-point strong {
+    display: block;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .career-point span {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
   .delivery-strip {
     margin-top: 28px;
     padding: 24px;
@@ -484,7 +554,8 @@
   @media (max-width: 1100px) {
     .project-card,
     .team-grid,
-    .delivery-strip {
+    .delivery-strip,
+    .career-grid {
       grid-template-columns: 1fr 1fr;
     }
     .project-card.reverse { direction: ltr; }
@@ -500,7 +571,8 @@
     .project-card,
     .rel-grid,
     .team-grid,
-    .delivery-strip {
+    .delivery-strip,
+    .career-grid {
       grid-template-columns: 1fr;
     }
     .phone-mockup-group {
@@ -518,6 +590,7 @@
   <div class="nav-logo">Influencer Commerce <span class="accent">Portfolio</span></div>
   <div class="nav-links">
     <a href="#projects">프로젝트</a>
+    <a href="#career">대표 경력</a>
     <a href="#relevance">적합성</a>
     <a href="#team">팀</a>
     <a href="./presentation.html">제안서</a>
@@ -722,6 +795,60 @@
   </div>
 </section>
 
+<section class="career-section" id="career">
+  <div class="section-inner">
+    <div class="section-label">Founder Experience</div>
+    <div class="section-title">대표자 경력과 이번 프로젝트의 연결점</div>
+    <p class="section-desc">이번 제안의 설득 포인트는 단순 개발 이력이 아니라, 실제 커머스 운영과 다자간 정산을 몸으로 겪어본 리드 경험입니다.</p>
+
+    <div class="career-grid">
+      <div class="career-main fade-up">
+        <h3>Jamie의 경력은 이번 프로젝트 요구사항과 직접 맞닿아 있습니다</h3>
+        <p class="career-lead">
+          올웨이즈 초기 멤버로 커머스 핵심 흐름을 만들었고, 미국 진출 MVP 작업을 통해 해외 이커머스 구조를 경험했습니다.
+          두잇에서는 라이더 팀과 사장님 팀을 모두 맡아 주문·운영·정산의 복잡한 이해관계를 다뤘고,
+          티켓매치에서는 사용자·파트너·운영자가 얽힌 다자 구조와 정산 흐름을 직접 설계했습니다.
+        </p>
+        <div class="career-highlight-list">
+          <div class="career-highlight">
+            <div class="title">올웨이즈 · 커머스 초기 멤버</div>
+            <div class="desc">콘텐츠/추천 기반 커머스의 전환 구조를 만들고, 실제 거래와 운영이 이어지는 핵심 흐름을 경험했습니다. 미국 진출 MVP 작업 경험으로 해외 사용자와 확장 구조까지 고려한 제품 설계 감각이 있습니다.</div>
+          </div>
+          <div class="career-highlight">
+            <div class="title">두잇 · 라이더 팀 / 사장님 팀</div>
+            <div class="desc">주문 상태, 가맹점 운영, 물류, 정산과 예외처리가 동시에 얽히는 서비스에서 다자간 운영 구조를 다뤘습니다. 공급사와 운영자 관점이 함께 필요한 프로젝트에 강점이 있습니다.</div>
+          </div>
+          <div class="career-highlight">
+            <div class="title">티켓매치 · 다자간 정산 구조</div>
+            <div class="desc">사용자, 파트너, 운영자 간 거래 흐름과 지급 로직이 있는 플랫폼을 직접 설계/구현했습니다. 인플루언서-벤더-플랫폼 간 정산 구조를 이해하고 문서화하는 데 강점이 있습니다.</div>
+          </div>
+        </div>
+      </div>
+      <div class="career-side fade-up">
+        <h3>이번 프로젝트에서 특히 중요한 경험</h3>
+        <div class="career-points">
+          <div class="career-point">
+            <strong>커머스 초기 구축 경험</strong>
+            <span>처음부터 주문/결제/운영 흐름을 세워본 경험이 있어, 기능 나열이 아니라 실제 런칭 가능한 구조로 풀 수 있습니다.</span>
+          </div>
+          <div class="career-point">
+            <strong>글로벌/해외 확장 감각</strong>
+            <span>미국 진출 MVP 경험을 바탕으로, 한국 소비자 대상 서비스이면서도 해외 인플루언서와의 연결 구조를 현실적으로 설계할 수 있습니다.</span>
+          </div>
+          <div class="career-point">
+            <strong>다자간 정산 이해</strong>
+            <span>판매자, 파트너, 운영자가 함께 얽히는 구조에서 정산 규칙과 예외처리를 설계해본 경험이 있습니다.</span>
+          </div>
+          <div class="career-point">
+            <strong>운영자 관점 제품 설계</strong>
+            <span>단순 사용자 화면보다, 운영자가 매일 쓰는 백오피스가 중요한 프로젝트에 더 강합니다.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="rel-section" id="relevance">
   <div class="section-inner">
     <div class="section-label">Project Fit</div>
@@ -747,7 +874,7 @@
       <div class="team-card fade-up">
         <div class="team-name">Jamie</div>
         <div class="team-role">Project Lead / Product Engineer</div>
-        <div class="team-exp">요구사항 구조화, 기능 우선순위 조정, 제품/운영 정책 정의, 전반적 실행 리드를 담당합니다.</div>
+        <div class="team-exp">올웨이즈 커머스 초기 멤버, 미국 진출 MVP 경험, 티켓매치/두잇을 통한 다자간 정산·운영 경험을 바탕으로 전체 실행을 리드합니다.</div>
       </div>
       <div class="team-card fade-up">
         <div class="team-name">Tom</div>
