@@ -3,34 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>포트폴리오 · 인플루언서 커머스 제안서</title>
+<title>포트폴리오 · 미국 인플루언서 역직구 커머스 플랫폼</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet">
 <style>
   :root {
-    --c50: #fff7ed;
-    --c100: #ffedd5;
-    --c200: #fed7aa;
-    --c300: #fdba74;
-    --c400: #fb923c;
-    --c500: #f97316;
-    --c600: #ea580c;
-    --c700: #c2410c;
-    --c800: #9a3412;
-    --ink: #111827;
-    --ink2: #0f172a;
-    --muted: #64748b;
-    --line: #e5e7eb;
-    --surface: #fffaf5;
-    --card: #ffffff;
+    --c50: #eff6ff;
+    --c100: #dbeafe;
+    --c200: #bfdbfe;
+    --c300: #93c5fd;
+    --c400: #60a5fa;
+    --c500: #3b82f6;
+    --c600: #2563eb;
+    --c700: #1d4ed8;
+    --c800: #1e3a5f;
+    --c900: #172554;
+    --c950: #0f1729;
+    --teal: #14b8a6;
+    --light-bg: #f8fafc;
+    --dark: #0f172a;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Noto Sans KR', sans-serif;
     background: #fff;
-    color: #334155;
+    color: #374151;
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
   }
@@ -39,103 +38,436 @@
     top: 0;
     left: 0;
     right: 0;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 100;
+    padding: 0 40px;
     height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
-    z-index: 100;
   }
   .nav-logo {
+    font-weight: 800;
     font-size: 16px;
-    font-weight: 900;
-    color: var(--ink);
+    color: #111827;
   }
   .nav-logo .accent { color: var(--c600); }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-  }
+  .nav-links { display: flex; gap: 32px; }
   .nav-links a {
     text-decoration: none;
-    color: #64748b;
+    color: #6b7280;
     font-size: 14px;
-    font-weight: 600;
-    transition: color .2s ease;
+    font-weight: 500;
+    transition: color .2s;
   }
-  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover { color: #111827; }
   .hero {
-    min-height: 84vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
-    padding: 130px 40px 90px;
-    background:
-      radial-gradient(circle at top left, rgba(249,115,22,.12), transparent 28%),
-      radial-gradient(circle at top right, rgba(20,184,166,.08), transparent 24%),
-      linear-gradient(180deg, #fffaf5 0%, #ffffff 72%);
-  }
-  .hero-inner {
-    max-width: 1140px;
+    padding: 120px 40px 80px;
+    max-width: 1100px;
     margin: 0 auto;
-    width: 100%;
   }
+  .hero-content { max-width: 760px; }
   .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 7px 16px;
-    border-radius: 999px;
+    display: inline-block;
     font-size: 13px;
-    font-weight: 700;
-    color: var(--c700);
+    font-weight: 600;
+    color: var(--c600);
     background: var(--c50);
     border: 1px solid var(--c100);
+    border-radius: 100px;
+    padding: 6px 16px;
     margin-bottom: 24px;
   }
   .hero h1 {
-    font-size: clamp(32px, 4.6vw, 58px);
+    font-size: clamp(28px, 4.2vw, 48px);
     font-weight: 900;
-    line-height: 1.15;
-    letter-spacing: -0.04em;
-    color: var(--ink);
+    line-height: 1.25;
+    letter-spacing: -2px;
+    color: #111827;
     margin-bottom: 20px;
   }
   .hero h1 .accent { color: var(--c600); }
   .hero-desc {
-    max-width: 760px;
-    font-size: 18px;
+    font-size: 17px;
+    color: #6b7280;
+    max-width: 620px;
     line-height: 1.9;
-    color: var(--muted);
-    margin-bottom: 42px;
+    margin-bottom: 48px;
   }
-  .hero-desc strong { color: var(--ink); }
+  .hero-desc strong { color: #111827; font-weight: 700; }
   .hero-metrics {
     display: flex;
-    gap: 40px;
+    gap: 48px;
     flex-wrap: wrap;
-    margin-bottom: 34px;
   }
   .hero-metric {
     border-left: 3px solid var(--c100);
-    padding-left: 18px;
+    padding-left: 20px;
   }
   .hero-metric .val {
     font-size: 32px;
     font-weight: 900;
-    letter-spacing: -0.04em;
     color: var(--c600);
+    letter-spacing: -1px;
   }
   .hero-metric .desc {
     font-size: 13px;
-    color: #94a3b8;
+    color: #9ca3af;
     margin-top: 2px;
   }
-  .hero-actions {
+  section { padding: 100px 40px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--c600);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.3;
+    color: #111827;
+    margin-bottom: 12px;
+  }
+  .section-desc {
+    font-size: 16px;
+    color: #9ca3af;
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 56px;
+  }
+  .project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-bottom: 100px;
+    padding-bottom: 100px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .project-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .project-card.reverse { direction: rtl; }
+  .project-card.reverse > * { direction: ltr; }
+  .project-info h3 {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  .project-info p {
+    font-size: 15px;
+    color: #6b7280;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+  .project-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .project-tag.app { background: var(--c50); color: var(--c700); }
+  .project-tag.web { background: var(--c50); color: var(--c700); }
+  .project-tag.commerce { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+  .project-tag.ops { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+  .tech-layers { margin-bottom: 24px; }
+  .tech-layer {
+    margin-bottom: 16px;
+    padding: 16px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+  .tech-layer-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--c800);
+    margin-bottom: 8px;
+  }
+  .tech-layer-items {
     display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .tech-layer-item {
+    font-size: 13px;
+    color: #6b7280;
+    padding-left: 12px;
+    border-left: 2px solid var(--c200);
+    line-height: 1.6;
+  }
+  .project-tech {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .project-tech span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--c800);
+    background: var(--c50);
+    border: 1px solid var(--c100);
+    border-radius: 6px;
+    padding: 4px 10px;
+  }
+  .mockup-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9ca3af;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .mockup-label.mine { color: var(--c600); }
+  .web-mockup {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid #e5e7eb;
+    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+    background: #fff;
+  }
+  .web-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .web-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .web-dot.r { background: #fca5a5; }
+  .web-dot.y { background: #fcd34d; }
+  .web-dot.g { background: #86efac; }
+  .web-url {
+    margin-left: 8px;
+    font-size: 11px;
+    color: #9ca3af;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 2px 10px;
+    flex: 1;
+  }
+  .web-mockup img { width: 100%; display: block; height: auto; }
+  .phone-mockup {
+    width: 260px;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 6px solid #1f2937;
+    box-shadow: 0 12px 40px rgba(0,0,0,.15);
+    background: #000;
+    position: relative;
+  }
+  .phone-mockup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 24px;
+    background: #1f2937;
+    border-radius: 0 0 16px 16px;
+    z-index: 1;
+  }
+  .phone-mockup img { width: 100%; display: block; }
+  .phone-mockup-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .phone-mockup.small { transform: scale(.85); transform-origin: top center; }
+  .rel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .rel-card {
+    padding: 32px 28px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1.5px solid #e5e7eb;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .rel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(37,99,235,.08);
+  }
+  .rel-card .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    background: var(--c50);
+  }
+  .rel-card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 8px;
+  }
+  .rel-card p {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.7;
+  }
+  .career-section { background: #f9fafb; }
+  .career-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .career-main, .career-side {
+    padding: 32px 28px;
+    border-radius: 18px;
+    background: #fff;
+    border: 1.5px solid #e5e7eb;
+  }
+  .career-main h3, .career-side h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 12px;
+  }
+  .career-lead {
+    font-size: 15px;
+    color: #6b7280;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+  .career-highlight-list { display: grid; gap: 14px; }
+  .career-highlight {
+    border-left: 3px solid var(--c100);
+    padding-left: 14px;
+  }
+  .career-highlight .title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+  .career-highlight .desc {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.7;
+  }
+  .career-points { display: grid; gap: 12px; }
+  .career-point {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+  }
+  .career-point strong {
+    display: block;
+    font-size: 14px;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+  .career-point span {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.7;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .team-card {
+    padding: 32px 24px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1.5px solid #e5e7eb;
+    text-align: center;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(37,99,235,.08);
+  }
+  .team-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+  .team-role {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--c600);
+    margin-bottom: 12px;
+  }
+  .team-exp {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.6;
+    text-align: left;
+  }
+  .delivery-strip {
+    margin-top: 28px;
+    padding: 24px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .delivery-strip h4 {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 6px;
+  }
+  .delivery-strip p {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.7;
+  }
+  .cta-section {
+    text-align: center;
+    padding: 100px 40px;
+    background: linear-gradient(135deg, var(--c950), var(--c800));
+    color: #fff;
+  }
+  .cta-section h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .cta-section p {
+    font-size: 17px;
+    color: var(--c300);
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+  .cta-actions {
+    display: flex;
+    justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
   }
@@ -152,445 +484,55 @@
   }
   .btn:hover { transform: translateY(-2px); }
   .btn-primary {
-    background: linear-gradient(135deg, #fdba74, #f97316);
+    background: linear-gradient(135deg, var(--c300), var(--c500));
     color: #111827;
-    box-shadow: 0 14px 30px rgba(249,115,22,.22);
+    box-shadow: 0 14px 30px rgba(37,99,235,.22);
   }
   .btn-secondary {
-    border: 1px solid var(--line);
-    color: var(--ink);
-    background: #fff;
-  }
-  section { padding: 96px 40px; }
-  .section-inner {
-    max-width: 1140px;
-    margin: 0 auto;
-  }
-  .section-label {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--c600);
-    letter-spacing: 0.08em;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-  }
-  .section-title {
-    font-size: clamp(28px, 3.5vw, 42px);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    line-height: 1.24;
-    color: var(--ink);
-    margin-bottom: 12px;
-  }
-  .section-desc {
-    font-size: 16px;
-    color: #94a3b8;
-    max-width: 620px;
-    line-height: 1.8;
-    margin-bottom: 54px;
-  }
-  .project-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 58px;
-    align-items: start;
-    margin-bottom: 96px;
-    padding-bottom: 96px;
-    border-bottom: 1px solid var(--line);
-  }
-  .project-card:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-  .project-card.reverse { direction: rtl; }
-  .project-card.reverse > * { direction: ltr; }
-  .project-tag {
-    display: inline-block;
-    margin-bottom: 16px;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 999px;
-  }
-  .project-tag.commerce { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
-  .project-tag.ops { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-  .project-tag.growth { background: var(--c50); color: var(--c700); border: 1px solid var(--c100); }
-  .project-info h3 {
-    font-size: clamp(24px, 3vw, 34px);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    color: var(--ink);
-    margin-bottom: 12px;
-  }
-  .project-info p {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.9;
-    margin-bottom: 24px;
-  }
-  .tech-layers {
-    margin-bottom: 24px;
-  }
-  .tech-layer {
-    margin-bottom: 14px;
-    padding: 16px;
-    border-radius: 14px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-  }
-  .tech-layer-title {
-    font-size: 13px;
-    font-weight: 800;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-  .tech-layer-items {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .tech-layer-item {
-    padding-left: 12px;
-    border-left: 2px solid var(--c100);
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-  .project-tech {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .project-tech span {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--c800);
-    background: var(--c50);
-    border: 1px solid var(--c100);
-    border-radius: 8px;
-    padding: 4px 10px;
-  }
-  .mockup-label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--c600);
-    margin-bottom: 12px;
-  }
-  .web-mockup {
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1.5px solid var(--line);
-    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08);
-    background: #fff;
-  }
-  .web-toolbar {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 14px;
-    background: #f8fafc;
-    border-bottom: 1px solid var(--line);
-  }
-  .web-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-  .web-dot.r { background: #fda4af; }
-  .web-dot.y { background: #fcd34d; }
-  .web-dot.g { background: #86efac; }
-  .web-url {
-    margin-left: 8px;
-    flex: 1;
-    padding: 2px 10px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: #fff;
-    color: #94a3b8;
-    font-size: 11px;
-  }
-  .web-mockup img {
-    width: 100%;
-    display: block;
-    height: auto;
-  }
-  .phone-mockup-group {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .phone-mockup {
-    width: 258px;
-    border-radius: 30px;
-    overflow: hidden;
-    border: 6px solid #1f2937;
-    box-shadow: 0 16px 42px rgba(15, 23, 42, 0.16);
-    background: #000;
-    position: relative;
-  }
-  .phone-mockup::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 98px;
-    height: 22px;
-    background: #1f2937;
-    border-radius: 0 0 15px 15px;
-    z-index: 1;
-  }
-  .phone-mockup img {
-    width: 100%;
-    display: block;
-  }
-  .phone-mockup.small {
-    transform: scale(0.86);
-    transform-origin: top center;
-  }
-  .rel-section { background: var(--surface); }
-  .rel-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-  }
-  .rel-card {
-    padding: 28px 24px;
-    border-radius: 18px;
-    border: 1.5px solid var(--line);
-    background: #fff;
-    transition: transform .18s ease, box-shadow .18s ease;
-  }
-  .rel-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 34px rgba(249,115,22,.1);
-  }
-  .rel-card .icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    background: var(--c50);
-    margin-bottom: 18px;
-  }
-  .rel-card h3 {
-    font-size: 18px;
-    font-weight: 900;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-  .rel-card p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-  }
-  .team-card {
-    padding: 30px 24px;
-    border-radius: 18px;
-    border: 1.5px solid var(--line);
-    background: #fff;
-  }
-  .team-name {
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--ink);
-    margin-bottom: 4px;
-  }
-  .team-role {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--c600);
-    margin-bottom: 10px;
-  }
-  .team-exp {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  .career-section {
-    background: linear-gradient(180deg, #fffaf5 0%, #ffffff 100%);
-  }
-  .career-grid {
-    display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    gap: 24px;
-    align-items: start;
-  }
-  .career-main,
-  .career-side {
-    background: #fff;
-    border: 1.5px solid var(--line);
-    border-radius: 22px;
-    padding: 28px;
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
-  }
-  .career-main h3,
-  .career-side h3 {
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--ink);
-    margin-bottom: 10px;
-  }
-  .career-lead {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.85;
-    margin-bottom: 22px;
-  }
-  .career-highlight-list {
-    display: grid;
-    gap: 14px;
-  }
-  .career-highlight {
-    border-left: 3px solid var(--c200);
-    padding-left: 14px;
-  }
-  .career-highlight .title {
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--ink);
-    margin-bottom: 4px;
-  }
-  .career-highlight .desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-  .career-points {
-    display: grid;
-    gap: 12px;
-  }
-  .career-point {
-    padding: 14px 16px;
-    border-radius: 14px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-  }
-  .career-point strong {
-    display: block;
-    font-size: 14px;
-    color: var(--ink);
-    margin-bottom: 4px;
-  }
-  .career-point span {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  .delivery-strip {
-    margin-top: 28px;
-    padding: 24px;
-    border-radius: 20px;
-    border: 1px solid var(--line);
-    background: var(--surface);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-  }
-  .delivery-strip h4 {
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  .delivery-strip p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  .cta-section {
-    text-align: center;
-    background: linear-gradient(135deg, #0f172a, #111827 70%, #1f2937);
+    border: 1px solid rgba(255,255,255,.24);
     color: #fff;
-    padding: 100px 40px;
-  }
-  .cta-section h2 {
-    font-size: clamp(30px, 4vw, 46px);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    margin-bottom: 14px;
-  }
-  .cta-section p {
-    font-size: 17px;
-    color: #cbd5e1;
-    margin-bottom: 34px;
-    line-height: 1.85;
-  }
-  .cta-actions {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    background: rgba(255,255,255,.08);
   }
   footer {
     text-align: center;
     padding: 24px 40px;
-    background: #020617;
-    color: rgba(255,255,255,.38);
+    background: var(--c950);
+    color: rgba(255,255,255,.4);
     font-size: 13px;
   }
   .fade-up {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(20px);
     transition: opacity .6s ease, transform .6s ease;
   }
   .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
   }
-  @media (max-width: 1100px) {
-    .project-card,
-    .team-grid,
-    .delivery-strip,
-    .career-grid {
-      grid-template-columns: 1fr 1fr;
-    }
+  @media (max-width: 1024px) {
+    .project-card { grid-template-columns: 1fr; gap: 32px; }
     .project-card.reverse { direction: ltr; }
-    .rel-grid { grid-template-columns: 1fr 1fr; }
+    .rel-grid, .team-grid, .delivery-strip, .career-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     .nav { padding: 0 20px; }
     .nav-links { display: none; }
-    section,
-    .hero,
-    .cta-section { padding-left: 20px; padding-right: 20px; }
-    .hero { padding-top: 100px; }
-    .project-card,
-    .rel-grid,
-    .team-grid,
-    .delivery-strip,
-    .career-grid {
-      grid-template-columns: 1fr;
-    }
-    .phone-mockup-group {
-      flex-direction: column;
-      align-items: center;
-    }
+    .hero { padding: 100px 20px 60px; }
+    section, .cta-section { padding-left: 20px; padding-right: 20px; }
+    .hero-metrics { gap: 24px; }
+    .phone-mockup-group { flex-direction: column; align-items: center; }
     .phone-mockup.small { transform: none; }
-    .hero-metrics { gap: 22px; }
+    .rel-grid, .team-grid, .delivery-strip, .career-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <div class="nav-logo">인플루언서 커머스 <span class="accent">포트폴리오</span></div>
+  <div class="nav-logo">원클릭사이트제작 <span class="accent">포트폴리오</span></div>
   <div class="nav-links">
     <a href="#projects">프로젝트</a>
-    <a href="#career">대표 경력</a>
+    <a href="#career">핵심 경력</a>
     <a href="#relevance">적합성</a>
     <a href="#team">팀</a>
     <a href="./presentation.html">제안서</a>
@@ -598,92 +540,52 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">관련 수행 사례</div>
-    <h1>콘텐츠 유입부터 주문, 운영, 정산까지<br><span class="accent">실제로 구현해온 커머스 팀</span></h1>
+  <div class="hero-content">
+    <div class="hero-badge">커머스 구축 사례</div>
+    <h1>콘텐츠 유입, 운영 백오피스, 정산까지<br><span class="accent">실제로 다뤄본 커머스 팀</span></h1>
     <p class="hero-desc">
-      브랜드몰 구축, 대규모 이커머스, 벤더 운영, 관리자 콘솔, 결제/정산, 리텐션 설계까지
-      실제 서비스 경험을 가진 팀입니다. 이번 제안의 핵심인
-      <strong>인플루언서 연계 전환 구조, 운영 백오피스, 정산 체계</strong>와 직접 연결되는 사례만 추렸습니다.
+      Jamie는 <strong>올웨이즈 커머스 초기 멤버</strong>로 커머스 핵심 흐름을 만들었고,
+      <strong>미국 진출 MVP</strong>, <strong>티켓매치 다자간 정산</strong>,
+      <strong>두잇 라이더팀/사장님팀</strong> 경험까지 갖고 있습니다.
+      Tom은 <strong>前 쿠팡 리드 엔지니어 출신</strong>입니다.
+      이번 제안은 그 실전 경험을 그대로 가져온 제안입니다.
     </p>
     <div class="hero-metrics">
-      <div class="hero-metric"><div class="val">530억</div><div class="desc">월 GMV 경험</div></div>
-      <div class="hero-metric"><div class="val">310만</div><div class="desc">MAU 규모 커머스</div></div>
-      <div class="hero-metric"><div class="val">15년+</div><div class="desc">커머스 아키텍처 리드</div></div>
-      <div class="hero-metric"><div class="val">0→1</div><div class="desc">런칭/운영 전환 경험</div></div>
-    </div>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="./presentation.html">제안서 보기</a>
-      <a class="btn btn-secondary" href="./index.html">홈으로</a>
+      <div class="hero-metric"><div class="val">310만</div><div class="desc">MAU 규모 커머스 경험</div></div>
+      <div class="hero-metric"><div class="val">530억</div><div class="desc">월 거래액 경험</div></div>
+      <div class="hero-metric"><div class="val">0→1</div><div class="desc">커머스 초기 구축 경험</div></div>
+      <div class="hero-metric"><div class="val">Jamie · Tom</div><div class="desc">핵심 리드 체제</div></div>
     </div>
   </div>
 </section>
 
 <section id="projects">
   <div class="section-inner">
-    <div class="section-label">관련 프로젝트</div>
-    <div class="section-title">이번 제안과 직접 연결되는 프로젝트</div>
-    <p class="section-desc">기술 스택보다 더 중요한 것은 운영을 끝까지 책임져 본 경험입니다.</p>
+    <div class="section-label">주요 프로젝트</div>
+    <div class="section-title">이번 제안과 직접 연결되는 사례들</div>
+    <p class="section-desc">보여주기 좋은 사례보다, 이번 프로젝트의 운영 복잡도와 닮은 사례만 추렸습니다.</p>
 
     <div class="project-card fade-up">
       <div class="project-info">
-        <div class="project-tag commerce">브랜드 D2C · 운영 커스터마이징</div>
-        <h3>D***C 화장품 브랜드몰</h3>
-        <p>
-          솔루션 기반 브랜드몰 구축과 운영 커스터마이징을 직접 수행한 사례입니다.
-          브랜드 아이덴티티를 반영한 쇼핑 경험, 관리자 설정, 외부 기능 연동,
-          성능 최적화까지 한 번에 정리한 프로젝트입니다.
-        </p>
+        <div class="project-tag commerce">콘텐츠 커머스 · 0→1 구축</div>
+        <h3>올웨이즈</h3>
+        <p>올웨이즈는 콘텐츠가 곧 커머스가 되는 구조였습니다. Jamie가 커머스 초기 멤버로 들어가 추천과 노출이 실제 구매로 이어지는 핵심 흐름을 직접 만들었습니다. 이번 프로젝트의 인플루언서 유입 구조와 가장 가깝습니다.</p>
         <div class="tech-layers">
           <div class="tech-layer">
-            <div class="tech-layer-title">이 프로젝트와의 연결점</div>
+            <div class="tech-layer-title">이번 프로젝트와 맞닿는 이유</div>
             <div class="tech-layer-items">
-              <div class="tech-layer-item">콘텐츠형 랜딩과 상품 상세 경험 설계</div>
-              <div class="tech-layer-item">운영자가 직접 제어할 수 있는 관리자 항목 구성</div>
-              <div class="tech-layer-item">브랜드/상품 운영 기준 정리와 성능 최적화</div>
+              <div class="tech-layer-item">콘텐츠 유입이 구매 전환으로 이어지는 구조 경험</div>
+              <div class="tech-layer-item">프로모션, 주문, 운영 지표가 함께 움직이는 커머스 감각</div>
+              <div class="tech-layer-item">초기 서비스에서 운영 가능한 구조를 빠르게 세운 경험</div>
             </div>
           </div>
         </div>
         <div class="project-tech">
-          <span>Brand Commerce</span><span>Admin Customizing</span><span>Performance</span><span>D2C</span>
+          <span>대규모 커머스</span><span>콘텐츠 전환</span><span>초기 구축</span><span>운영 지표</span>
         </div>
       </div>
       <div>
-        <div class="mockup-label">✔ D***C 브랜드몰 화면</div>
-        <div class="web-mockup">
-          <div class="web-toolbar">
-            <div class="web-dot r"></div><div class="web-dot y"></div><div class="web-dot g"></div>
-            <div class="web-url">drbridc.com</div>
-          </div>
-          <img src="portfolio-images/drbridc-main.png" alt="D***C 브랜드몰">
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reverse fade-up">
-      <div class="project-info">
-        <div class="project-tag commerce">대규모 디스커버리 커머스</div>
-        <h3>올웨이즈 (Alwayz)</h3>
-        <p>
-          가입자 700만, MAU 310만 규모의 디스커버리 이커머스 핵심 서비스를 0에서 1까지 구현한 경험입니다.
-          콘텐츠 기반 유입이 실제 거래로 연결되는 구조와, 대규모 주문/프로모션 흐름을 직접 다뤘습니다.
-        </p>
-        <div class="tech-layers">
-          <div class="tech-layer">
-            <div class="tech-layer-title">이 프로젝트와의 연결점</div>
-            <div class="tech-layer-items">
-              <div class="tech-layer-item">콘텐츠/추천 기반 상품 노출과 전환 구조</div>
-              <div class="tech-layer-item">대규모 주문, 포인트/프로모션, 커머스 핵심 플로우 구현</div>
-              <div class="tech-layer-item">성장 지표와 운영 지표를 함께 보는 관점</div>
-            </div>
-          </div>
-        </div>
-        <div class="project-tech">
-          <span>Discovery Commerce</span><span>MERN</span><span>Scale</span><span>Growth</span>
-        </div>
-      </div>
-      <div>
-        <div class="mockup-label">✔ 올웨이즈 커머스 화면</div>
+        <div class="mockup-label mine">&#x2714; 올웨이즈 커머스 화면</div>
         <div class="web-mockup">
           <div class="web-toolbar">
             <div class="web-dot r"></div><div class="web-dot y"></div><div class="web-dot g"></div>
@@ -694,98 +596,120 @@
       </div>
     </div>
 
-    <div class="project-card fade-up">
+    <div class="project-card reverse fade-up">
       <div class="project-info">
-        <div class="project-tag ops">Merchant Ops · 주문 · 물류 · 정산</div>
-        <h3>두잇 (Doeat)</h3>
-        <p>
-          1인 가구 대상 배달 커머스에서 머천트 운영과 라이더 스쿼드를 담당했습니다.
-          주문 처리, 출고/배달 상태, 가맹점 운영, 정산과 예외 처리까지 운영 관점의 커머스를 깊게 경험한 사례입니다.
-        </p>
+        <div class="project-tag app">브랜드 커머스 · 운영 커스터마이징</div>
+        <h3>D***C 화장품 브랜드몰</h3>
+        <p>브랜드몰은 예쁘게 만드는 것보다 운영자가 계속 고칠 수 있게 만드는 것이 더 중요합니다. 상품 운영, 관리자 설정, 외부 기능 연동, 성능 최적화까지 포함해 실제 운영형 브랜드몰을 정리한 사례입니다.</p>
         <div class="tech-layers">
           <div class="tech-layer">
-            <div class="tech-layer-title">이 프로젝트와의 연결점</div>
+            <div class="tech-layer-title">이번 프로젝트와 맞닿는 이유</div>
             <div class="tech-layer-items">
-              <div class="tech-layer-item">벤더/머천트 운영 프로세스 설계</div>
-              <div class="tech-layer-item">주문 상태, 클레임, 물류 연계 운영</div>
-              <div class="tech-layer-item">결제/정산/환불 관점의 백오피스 경험</div>
+              <div class="tech-layer-item">콘텐츠형 랜딩과 상품 상세 경험 설계</div>
+              <div class="tech-layer-item">운영팀이 직접 다루는 관리자 항목 구성</div>
+              <div class="tech-layer-item">브랜드와 상품 정책을 화면과 백오피스에 함께 녹인 경험</div>
             </div>
           </div>
         </div>
         <div class="project-tech">
-          <span>Merchant Ops</span><span>Order Flow</span><span>Settlement</span><span>Logistics</span>
+          <span>브랜드몰</span><span>관리자 화면</span><span>운영 커스터마이징</span><span>성능 최적화</span>
         </div>
       </div>
       <div>
-        <div class="mockup-label">✔ 두잇 서비스 화면</div>
+        <div class="mockup-label mine">&#x2714; D***C 브랜드몰</div>
+        <div class="web-mockup">
+          <div class="web-toolbar">
+            <div class="web-dot r"></div><div class="web-dot y"></div><div class="web-dot g"></div>
+            <div class="web-url">drbridc.com</div>
+          </div>
+          <img src="portfolio-images/drbridc-main.png" alt="D***C 브랜드몰">
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-info">
+        <div class="project-tag ops">운영 백오피스 · 주문 · 물류</div>
+        <h3>두잇</h3>
+        <p>Jamie는 두잇에서 라이더팀과 사장님팀을 모두 경험했습니다. 주문 상태, 물류, 가맹점 운영, 예외 처리, 정산처럼 서로 다른 이해관계가 동시에 걸리는 운영 문제를 실무에서 다뤘습니다.</p>
+        <div class="tech-layers">
+          <div class="tech-layer">
+            <div class="tech-layer-title">이번 프로젝트와 맞닿는 이유</div>
+            <div class="tech-layer-items">
+              <div class="tech-layer-item">공급사와 운영자 관점을 동시에 보는 구조 설계</div>
+              <div class="tech-layer-item">주문 상태, 출고, 클레임, 물류 연계 운영 경험</div>
+              <div class="tech-layer-item">정산과 예외처리가 많은 서비스에서의 실무 감각</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-tech">
+          <span>공급사 운영</span><span>주문 흐름</span><span>물류 연계</span><span>예외 처리</span>
+        </div>
+      </div>
+      <div>
+        <div class="mockup-label mine">&#x2714; 두잇 서비스 화면</div>
         <div class="web-mockup">
           <div class="web-toolbar">
             <div class="web-dot r"></div><div class="web-dot y"></div><div class="web-dot g"></div>
             <div class="web-url">doeat.co.kr</div>
           </div>
-          <img src="portfolio-images/doeat.avif" alt="두잇 커머스">
+          <img src="portfolio-images/doeat.avif" alt="두잇 서비스">
         </div>
       </div>
     </div>
 
     <div class="project-card reverse fade-up">
       <div class="project-info">
-        <div class="project-tag ops">매칭 플랫폼 · 관리자 자동화</div>
-        <h3>티켓매치 (TicketMatch)</h3>
-        <p>
-          사용자와 파트너를 연결하는 매칭 구조, 결제 연동, 운영 관리자 콘솔을 함께 만든 서비스입니다.
-          인플루언서-벤더-운영자 사이의 관계와 예외처리가 많은 플랫폼에 필요한 운영 사고방식과 닮아 있습니다.
-        </p>
+        <div class="project-tag web">다자간 거래 · 관리자 콘솔</div>
+        <h3>티켓매치</h3>
+        <p>티켓매치는 사용자, 파트너, 운영자가 함께 얽히는 구조였습니다. Jamie가 다자간 정산과 운영 흐름을 다루며 관리자 중심 사고방식을 깊게 가져간 프로젝트입니다. 이번 제안의 인플루언서-공급사-플랫폼 구조와 매우 닮아 있습니다.</p>
         <div class="tech-layers">
           <div class="tech-layer">
-            <div class="tech-layer-title">이 프로젝트와의 연결점</div>
+            <div class="tech-layer-title">이번 프로젝트와 맞닿는 이유</div>
             <div class="tech-layer-items">
-              <div class="tech-layer-item">관리자 중심의 승인/예외 처리 구조</div>
-              <div class="tech-layer-item">이벤트/거래 흐름을 추적하는 백오피스 경험</div>
-              <div class="tech-layer-item">결제와 운영 상태를 한 화면에서 연결하는 설계</div>
+              <div class="tech-layer-item">다자간 거래 구조와 지급 로직 설계 경험</div>
+              <div class="tech-layer-item">승인, 예외 처리, 상태 추적이 많은 관리자 콘솔 경험</div>
+              <div class="tech-layer-item">정산 기준과 운영 상태를 한 화면에서 연결하는 감각</div>
             </div>
           </div>
         </div>
         <div class="project-tech">
-          <span>Admin Console</span><span>Payment</span><span>Workflow</span><span>Marketplace Logic</span>
+          <span>다자간 정산</span><span>관리자 콘솔</span><span>운영 흐름</span><span>지급 로직</span>
         </div>
       </div>
       <div>
-        <div class="mockup-label">✔ 티켓매치 관리자 중심 화면</div>
-        <div class="web-mockup" style="max-width: 78%; margin-left: auto;">
+        <div class="mockup-label mine">&#x2714; 티켓매치 화면</div>
+        <div class="web-mockup" style="max-width:78%;margin-left:auto;">
           <div class="web-toolbar">
             <div class="web-dot r"></div><div class="web-dot y"></div><div class="web-dot g"></div>
             <div class="web-url">ticketmatch.kr</div>
           </div>
-          <img src="portfolio-images/ticketmatch-main.PNG" alt="티켓매치 메인">
+          <img src="portfolio-images/ticketmatch-main.PNG" alt="티켓매치 화면">
         </div>
       </div>
     </div>
 
     <div class="project-card fade-up">
       <div class="project-info">
-        <div class="project-tag growth">모바일 리텐션 · 리워드 운영</div>
-        <h3>머니워크 (MoneyWalk)</h3>
-        <p>
-          한국/일본/미국 3개국에서 서비스된 리워드 앱입니다. 사용자가 다시 돌아오게 만드는
-          리텐션 장치와 캠페인 구조를 만들며, 유저 행동 데이터와 전환을 함께 다뤘습니다.
-        </p>
+        <div class="project-tag app">리텐션 · 캠페인 운영</div>
+        <h3>머니워크</h3>
+        <p>유입만 만들고 끝나는 서비스는 오래 가지 않습니다. 머니워크는 한국, 일본, 미국에서 운영되며 리텐션과 캠페인 반응을 계속 다뤘던 서비스입니다. 인플루언서 유입 이후 재구매와 재방문을 설계하는 감각이 이 프로젝트에도 그대로 필요합니다.</p>
         <div class="tech-layers">
           <div class="tech-layer">
-            <div class="tech-layer-title">이 프로젝트와의 연결점</div>
+            <div class="tech-layer-title">이번 프로젝트와 맞닿는 이유</div>
             <div class="tech-layer-items">
-              <div class="tech-layer-item">인플루언서 유입 이후 재구매/리텐션 구조 설계 감각</div>
-              <div class="tech-layer-item">프로모션과 행동 데이터를 연결한 성장 실험 경험</div>
-              <div class="tech-layer-item">모바일 중심 사용자 경험과 캠페인 반응 최적화</div>
+              <div class="tech-layer-item">유입 이후 재방문과 재구매를 만드는 장치 설계</div>
+              <div class="tech-layer-item">캠페인 반응과 행동 데이터를 함께 보는 경험</div>
+              <div class="tech-layer-item">모바일 중심 사용자 경험과 성장 실험 감각</div>
             </div>
           </div>
         </div>
         <div class="project-tech">
-          <span>Retention</span><span>Reward System</span><span>Mobile UX</span><span>Growth</span>
+          <span>리텐션</span><span>캠페인 운영</span><span>행동 데이터</span><span>재구매 설계</span>
         </div>
       </div>
       <div>
-        <div class="mockup-label">✔ 머니워크 모바일 화면</div>
+        <div class="mockup-label mine">&#x2714; 머니워크 화면</div>
         <div class="phone-mockup-group">
           <div class="phone-mockup"><img src="portfolio-images/moneywalk-home-dev.PNG" alt="머니워크 홈"></div>
           <div class="phone-mockup small"><img src="portfolio-images/moneywalk-streak25.PNG" alt="머니워크 스트릭"></div>
@@ -797,51 +721,55 @@
 
 <section class="career-section" id="career">
   <div class="section-inner">
-    <div class="section-label">대표자 경력</div>
-    <div class="section-title">대표자 경력과 이번 프로젝트의 연결점</div>
-    <p class="section-desc">이번 제안의 설득 포인트는 단순 개발 이력이 아니라, 실제 커머스 운영과 다자간 정산을 몸으로 겪어본 리드 경험입니다.</p>
+    <div class="section-label">핵심 경력</div>
+    <div class="section-title">Jamie와 Tom이 이번 프로젝트에 강한 이유</div>
+    <p class="section-desc">제안의 설득 포인트는 이력이 많다는 점이 아니라, 이번 프로젝트의 어려운 구간을 이미 겪어봤다는 점입니다.</p>
 
     <div class="career-grid">
       <div class="career-main fade-up">
-        <h3>Jamie의 경력은 이번 프로젝트 요구사항과 직접 맞닿아 있습니다</h3>
+        <h3>Jamie의 경험은 이번 프로젝트 요구사항과 거의 겹칩니다</h3>
         <p class="career-lead">
-          올웨이즈 초기 멤버로 커머스 핵심 흐름을 만들었고, 미국 진출 MVP 작업을 통해 해외 이커머스 구조를 경험했습니다.
-          두잇에서는 라이더 팀과 사장님 팀을 모두 맡아 주문·운영·정산의 복잡한 이해관계를 다뤘고,
-          티켓매치에서는 사용자·파트너·운영자가 얽힌 다자 구조와 정산 흐름을 직접 설계했습니다.
+          올웨이즈 커머스 초기 멤버로 커머스 핵심 흐름을 만들었고, 미국 진출 MVP 작업으로 해외 확장 감각을 익혔습니다.
+          두잇에서는 라이더팀과 사장님팀을 모두 경험해 운영과 공급자 관점을 함께 봤고,
+          티켓매치에서는 다자간 정산과 관리자 중심 운영 흐름을 직접 다뤘습니다.
         </p>
         <div class="career-highlight-list">
           <div class="career-highlight">
             <div class="title">올웨이즈 · 커머스 초기 멤버</div>
-            <div class="desc">콘텐츠/추천 기반 커머스의 전환 구조를 만들고, 실제 거래와 운영이 이어지는 핵심 흐름을 경험했습니다. 미국 진출 MVP 작업 경험으로 해외 사용자와 확장 구조까지 고려한 제품 설계 감각이 있습니다.</div>
+            <div class="desc">콘텐츠와 커머스를 연결하는 핵심 흐름을 직접 만들었습니다. 이번 프로젝트의 인플루언서 유입 구조를 빠르게 이해할 수 있는 이유입니다.</div>
           </div>
           <div class="career-highlight">
-            <div class="title">두잇 · 라이더 팀 / 사장님 팀</div>
-            <div class="desc">주문 상태, 가맹점 운영, 물류, 정산과 예외처리가 동시에 얽히는 서비스에서 다자간 운영 구조를 다뤘습니다. 공급사와 운영자 관점이 함께 필요한 프로젝트에 강점이 있습니다.</div>
+            <div class="title">미국 진출 MVP 작업</div>
+            <div class="desc">해외 요소가 붙은 서비스에서 무엇을 1차에 넣고 무엇을 2차로 미뤄야 하는지 판단해본 경험이 있습니다.</div>
           </div>
           <div class="career-highlight">
-            <div class="title">티켓매치 · 다자간 정산 구조</div>
-            <div class="desc">사용자, 파트너, 운영자 간 거래 흐름과 지급 로직이 있는 플랫폼을 직접 설계/구현했습니다. 인플루언서-벤더-플랫폼 간 정산 구조를 이해하고 문서화하는 데 강점이 있습니다.</div>
+            <div class="title">두잇 · 라이더팀 / 사장님팀</div>
+            <div class="desc">주문, 공급사 운영, 물류, 예외 처리가 동시에 얽힌 구조를 실무에서 다뤘습니다. 공급사 콘솔과 관리자 콘솔이 왜 중요한지 몸으로 압니다.</div>
+          </div>
+          <div class="career-highlight">
+            <div class="title">티켓매치 · 다자간 정산</div>
+            <div class="desc">사용자, 파트너, 운영자 사이 지급과 상태 추적이 얽히는 구조를 다뤘습니다. 정산 원장을 먼저 설계해야 하는 이유를 알고 있습니다.</div>
           </div>
         </div>
       </div>
       <div class="career-side fade-up">
-        <h3>이번 프로젝트에서 특히 중요한 경험</h3>
+        <h3>Tom이 붙으면 구조가 단단해집니다</h3>
         <div class="career-points">
           <div class="career-point">
-            <strong>커머스 초기 구축 경험</strong>
-            <span>처음부터 주문/결제/운영 흐름을 세워본 경험이 있어, 기능 나열이 아니라 실제 런칭 가능한 구조로 풀 수 있습니다.</span>
+            <strong>前 쿠팡 리드 엔지니어 출신</strong>
+            <span>운영 규모가 커질수록 어디서 문제가 터지는지 아는 엔지니어입니다. 주문, 운영, 정산을 버티는 구조로 봅니다.</span>
           </div>
           <div class="career-point">
-            <strong>글로벌/해외 확장 감각</strong>
-            <span>미국 진출 MVP 경험을 바탕으로, 한국 소비자 대상 서비스이면서도 해외 인플루언서와의 연결 구조를 현실적으로 설계할 수 있습니다.</span>
+            <strong>백오피스와 정산 아키텍처 강점</strong>
+            <span>보기 좋은 화면보다 운영팀이 덜 힘들어지는 구조를 우선합니다. 이번 프로젝트 핵심과 정확히 맞습니다.</span>
           </div>
           <div class="career-point">
-            <strong>다자간 정산 이해</strong>
-            <span>판매자, 파트너, 운영자가 함께 얽히는 구조에서 정산 규칙과 예외처리를 설계해본 경험이 있습니다.</span>
+            <strong>1차 오픈과 2차 확장 분리</strong>
+            <span>처음부터 모든 것을 넣지 않고, 운영 가능한 범위를 정확히 열어두는 접근에 익숙합니다.</span>
           </div>
           <div class="career-point">
-            <strong>운영자 관점 제품 설계</strong>
-            <span>단순 사용자 화면보다, 운영자가 매일 쓰는 백오피스가 중요한 프로젝트에 더 강합니다.</span>
+            <strong>Jamie와 역할이 잘 나뉩니다</strong>
+            <span>Jamie가 운영과 제품을 끌고, Tom이 구조를 받쳐주기 때문에 속도와 안정성을 동시에 가져갈 수 있습니다.</span>
           </div>
         </div>
       </div>
@@ -849,18 +777,18 @@
   </div>
 </section>
 
-<section class="rel-section" id="relevance">
+<section id="relevance">
   <div class="section-inner">
     <div class="section-label">프로젝트 적합성</div>
     <div class="section-title">이번 프로젝트에 맞는 이유</div>
-    <p class="section-desc">레퍼런스가 많은 팀보다, 필요한 운영 문제를 이미 겪어본 팀이 더 빠르고 정확합니다.</p>
+    <p class="section-desc">필요한 기능을 나열하는 팀보다, 필요한 운영 문제를 이미 겪어본 팀이 더 빠르고 정확합니다.</p>
     <div class="rel-grid">
-      <div class="rel-card fade-up"><div class="icon">🔗</div><h3>어트리뷰션 사고방식</h3><p>유입과 전환을 따로 보지 않고, 캠페인에서 매출과 리텐션까지 연결해 본 경험이 있습니다.</p></div>
-      <div class="rel-card fade-up"><div class="icon">🛍️</div><h3>브랜드/상품 운영</h3><p>브랜드몰, 상품 등록/검수, 판매 정책 운영을 실제로 구현하고 조정해왔습니다.</p></div>
-      <div class="rel-card fade-up"><div class="icon">🏪</div><h3>벤더 콘솔 감각</h3><p>공급자 입장에서 필요한 상품, 재고, 출고, 클레임 기능이 무엇인지 알고 있습니다.</p></div>
-      <div class="rel-card fade-up"><div class="icon">💳</div><h3>결제/정산 경험</h3><p>주문, 환불, 수수료, 지급 상태를 분리해 다루는 트랜잭션 사고방식을 보유하고 있습니다.</p></div>
-      <div class="rel-card fade-up"><div class="icon">🛠️</div><h3>관리자 중심 운영</h3><p>승인, 검수, 예외 처리, 운영 리포트가 있는 서비스들을 직접 설계하고 운영해왔습니다.</p></div>
-      <div class="rel-card fade-up"><div class="icon">📈</div><h3>성장/재구매 관점</h3><p>첫 구매 이후 재구매와 재방문을 만드는 구조를 제품 설계에 녹여낼 수 있습니다.</p></div>
+      <div class="rel-card fade-up"><div class="icon">🔗</div><h3>유입 귀속 감각</h3><p>콘텐츠 유입과 구매 귀속을 같이 보는 사고방식이 있습니다. 링크만 발급하고 끝내지 않습니다.</p></div>
+      <div class="rel-card fade-up"><div class="icon">🏪</div><h3>공급사 운영 이해</h3><p>공급사가 어떤 화면을 매일 써야 하는지 압니다. 상품, 재고, 출고, 클레임 중심으로 봅니다.</p></div>
+      <div class="rel-card fade-up"><div class="icon">🛠️</div><h3>운영 관리자 중심</h3><p>승인, 검수, 위험 주문, 예외 처리, 로그가 없는 서비스는 운영이 무너집니다. 그 지점을 먼저 챙깁니다.</p></div>
+      <div class="rel-card fade-up"><div class="icon">💳</div><h3>정산 원장 설계</h3><p>판매, 환불, 수수료, 조정 내역이 남는 구조를 선호합니다. 정산 분쟁을 줄이는 가장 현실적인 방법입니다.</p></div>
+      <div class="rel-card fade-up"><div class="icon">📈</div><h3>재구매 관점</h3><p>첫 구매 전환만이 아니라 재방문과 재구매를 만드는 구조까지 함께 설계할 수 있습니다.</p></div>
+      <div class="rel-card fade-up"><div class="icon">🌐</div><h3>해외 요소 판단</h3><p>미국 진출 MVP 경험이 있어, 해외 지급과 해외 인플루언서 요소를 과하지 않게 단계적으로 풀 수 있습니다.</p></div>
     </div>
   </div>
 </section>
@@ -869,45 +797,45 @@
   <div class="section-inner">
     <div class="section-label">팀</div>
     <div class="section-title">프로젝트를 수행할 팀</div>
-    <p class="section-desc">커머스, 운영, 데이터, UI를 각각 담당하는 실무 중심 팀으로 구성합니다.</p>
+    <p class="section-desc">핵심 리드는 Jamie와 Tom이 잡고, 정산과 화면 전달 품질을 실무 중심으로 붙입니다.</p>
     <div class="team-grid">
       <div class="team-card fade-up">
         <div class="team-name">Jamie</div>
-        <div class="team-role">Project Lead / Product Engineer</div>
-        <div class="team-exp">올웨이즈 커머스 초기 멤버, 미국 진출 MVP 경험, 티켓매치/두잇을 통한 다자간 정산·운영 경험을 바탕으로 전체 실행을 리드합니다.</div>
+        <div class="team-role">프로젝트 리드 · 제품/운영 설계</div>
+        <div class="team-exp">올웨이즈 커머스 초기 멤버, 미국 진출 MVP 작업 경험, 티켓매치 다자간 정산, 두잇 라이더팀/사장님팀 경험을 바탕으로 전체 실행을 리드합니다.</div>
       </div>
       <div class="team-card fade-up">
         <div class="team-name">Tom</div>
-        <div class="team-role">Commerce Architect / Lead Engineer</div>
-        <div class="team-exp">前 쿠팡 Engineering Manager. 주문, 정산, 운영 백오피스 등 커머스 중심 아키텍처를 책임집니다.</div>
+        <div class="team-role">커머스 아키텍트 · 리드 엔지니어</div>
+        <div class="team-exp">前 쿠팡 리드 엔지니어 출신입니다. 주문, 운영 백오피스, 정산을 버티는 구조로 설계하고 핵심 기술 판단을 책임집니다.</div>
       </div>
       <div class="team-card fade-up">
         <div class="team-name">Joon</div>
-        <div class="team-role">Backend / Data Engineer</div>
-        <div class="team-exp">정산 원장, 분석 리포트, 배치/로그, 데이터 정합성 검증과 같은 운영형 도메인 구현을 담당합니다.</div>
+        <div class="team-role">백엔드 · 데이터 엔지니어</div>
+        <div class="team-exp">정산 원장, 리포트, 배치, 데이터 정합성 검증처럼 운영형 도메인을 구현하고 검증하는 역할을 맡습니다.</div>
       </div>
       <div class="team-card fade-up">
         <div class="team-name">Alex + QA</div>
-        <div class="team-role">Frontend / Delivery Support</div>
-        <div class="team-exp">사용자/운영 화면 전달 품질, 반응형 UI, 런칭 직전 QA와 운영자 핸드오프를 지원합니다.</div>
+        <div class="team-role">프론트엔드 · 전달 품질</div>
+        <div class="team-exp">소비자 화면과 운영 화면의 반응형 품질, 화면 마감, 오픈 직전 QA와 운영자 인수인계를 지원합니다.</div>
       </div>
     </div>
     <div class="delivery-strip">
       <div>
-        <h4>기획과 설계</h4>
-        <p>역할/권한, 운영 규칙, 정산 기준을 먼저 고정하고 기능 개발에 들어갑니다.</p>
+        <h4>구조 먼저 확정</h4>
+        <p>역할과 권한, 정산 기준, 운영 정책을 먼저 고정한 뒤 구현에 들어갑니다.</p>
       </div>
       <div>
         <h4>병렬 개발</h4>
-        <p>소비자 경험과 운영 콘솔을 분리하지 않고 병렬 트랙으로 진행합니다.</p>
+        <p>소비자 경험과 운영 콘솔을 따로 밀지 않고 같이 진행해 런칭 공백을 줄입니다.</p>
       </div>
       <div>
-        <h4>운영 검수</h4>
-        <p>기능 시연보다 운영자가 실제로 사용할 수 있는 상태를 기준으로 검수합니다.</p>
+        <h4>운영 기준 검수</h4>
+        <p>기능 시연보다 운영팀이 실제로 사용할 수 있는지 기준으로 검수합니다.</p>
       </div>
       <div>
-        <h4>런칭 전환</h4>
-        <p>문서, QA, 교육, 초기 안정화 체계까지 포함해 실제 오픈을 준비합니다.</p>
+        <h4>오픈 지원</h4>
+        <p>문서, QA, 초기 안정화, 무상보수 12개월까지 이어서 가져갑니다.</p>
       </div>
     </div>
   </div>
@@ -915,17 +843,14 @@
 
 <section class="cta-section">
   <h2>이번 제안은 풀스코프 구축안입니다</h2>
-  <p>
-    소비자 화면만 만드는 프로젝트가 아니라, 인플루언서 유입 관리, 벤더 운영, 관리자 콘솔,
-    정산과 초기 운영 안정화까지 포함하는 상용 커머스 플랫폼으로 제안합니다.
-  </p>
+  <p>소비자 쇼핑몰만 만드는 프로젝트가 아니라, 인플루언서 유입 관리, 공급사 운영, 관리자 콘솔, 정산과 오픈 후 안정화까지 포함하는 상용 커머스 플랫폼으로 제안합니다.</p>
   <div class="cta-actions">
     <a class="btn btn-primary" href="./presentation.html">제안서 바로 보기</a>
     <a class="btn btn-secondary" href="./index.html">홈으로</a>
   </div>
 </section>
 
-<footer>© 2026 원클릭사이트제작 · Influencer Commerce Proposal</footer>
+<footer>© 2026 원클릭사이트제작 · 인플루언서 커머스 포트폴리오</footer>
 
 <script>
 const observer = new IntersectionObserver((entries) => {

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>미국 인플루언서 역직구 커머스 플랫폼 제안서</title>
+<title>미국 인플루언서 역직구 커머스 플랫폼 구축 제안서</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet">
@@ -12,8 +12,24 @@
   tailwind.config = {
     theme: {
       extend: {
-        fontFamily: {
-          sans: ['Noto Sans KR', 'sans-serif']
+        fontFamily: { sans: ['Noto Sans KR', 'sans-serif'] },
+        colors: {
+          navy: {
+            50:  '#eff6ff',
+            100: '#dbeafe',
+            200: '#bfdbfe',
+            300: '#93c5fd',
+            400: '#60a5fa',
+            500: '#3b82f6',
+            600: '#2563eb',
+            700: '#1d4ed8',
+            800: '#1e3a5f',
+            900: '#172554',
+            950: '#0f1729'
+          },
+          teal: '#14b8a6',
+          light: '#f8fafc',
+          dark: '#0f172a'
         }
       }
     }
@@ -21,27 +37,27 @@
 </script>
 <style>
   :root {
-    --c50: #fff7ed;
-    --c100: #ffedd5;
-    --c200: #fed7aa;
-    --c300: #fdba74;
-    --c400: #fb923c;
-    --c500: #f97316;
-    --c600: #ea580c;
-    --c700: #c2410c;
-    --c800: #9a3412;
-    --c900: #7c2d12;
-    --ink: #111827;
-    --ink2: #0f172a;
-    --ink3: #020617;
-    --sand: #fffaf5;
+    --c50: #eff6ff;
+    --c100: #dbeafe;
+    --c200: #bfdbfe;
+    --c300: #93c5fd;
+    --c400: #60a5fa;
+    --c500: #3b82f6;
+    --c600: #2563eb;
+    --c700: #1d4ed8;
+    --c800: #1e3a5f;
+    --c900: #172554;
+    --c950: #0f1729;
+    --teal: #14b8a6;
+    --light-bg: #f8fafc;
+    --dark: #0f172a;
   }
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans KR', sans-serif;
-    background: var(--ink3);
+    background: var(--c950);
     overflow: hidden;
     height: 100%;
   }
@@ -59,7 +75,7 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transform: translateX(64px);
+    transform: translateX(60px);
     transition: opacity .45s cubic-bezier(.4,0,.2,1), transform .45s cubic-bezier(.4,0,.2,1);
     pointer-events: none;
     overflow: hidden;
@@ -71,69 +87,17 @@
   }
   .slide.prev {
     opacity: 0;
-    transform: translateX(-64px);
+    transform: translateX(-60px);
   }
-  .slide-inner {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-  .scroll-content {
-    overflow-y: auto;
-    flex: 1;
-  }
-  .scroll-content::-webkit-scrollbar { width: 4px; }
-  .scroll-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 999px; }
-  .section-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 4px 14px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-  .heading-line {
-    display: inline-block;
-    position: relative;
-  }
-  .heading-line::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 3px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--c400), #facc15);
-  }
-  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .tbl th {
-    background: rgba(255,255,255,.1);
-    color: rgba(255,255,255,.9);
-    font-weight: 700;
-    padding: 10px 12px;
-    text-align: left;
-  }
-  .tbl td {
-    padding: 10px 12px;
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    color: rgba(255,255,255,.82);
-    vertical-align: top;
-  }
-  .chk { color: #14b8a6; font-weight: 800; }
   #progress-bar {
     position: fixed;
     top: 0;
     left: 0;
     height: 3px;
-    background: linear-gradient(90deg, #fdba74, #f97316);
+    background: linear-gradient(90deg, var(--c400), var(--c300));
     transition: width .4s ease;
     z-index: 100;
+    box-shadow: 0 0 8px rgba(96,165,250,.4);
   }
   #nav {
     position: fixed;
@@ -146,10 +110,10 @@
     z-index: 100;
   }
   .nav-btn {
-    width: 46px;
-    height: 46px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    border: 1.5px solid rgba(255,255,255,.24);
+    border: 1.5px solid rgba(255,255,255,.25);
     background: rgba(255,255,255,.08);
     backdrop-filter: blur(12px);
     color: #fff;
@@ -158,13 +122,21 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: background .2s, border-color .2s, transform .15s;
   }
+  .nav-btn:hover {
+    background: rgba(255,255,255,.18);
+    border-color: rgba(255,255,255,.5);
+    transform: scale(1.08);
+  }
+  .nav-btn:active { transform: scale(.95); }
   #counter {
-    color: rgba(255,255,255,.75);
+    color: rgba(255,255,255,.7);
     font-size: 13px;
-    font-weight: 600;
-    min-width: 58px;
+    font-weight: 500;
+    min-width: 56px;
     text-align: center;
+    letter-spacing: .5px;
   }
   #quick-links {
     position: fixed;
@@ -187,16 +159,79 @@
     font-size: 12px;
     font-weight: 700;
   }
+  .slide-inner {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .scroll-content {
+    overflow-y: auto;
+    flex: 1;
+  }
+  .scroll-content::-webkit-scrollbar { width: 4px; }
+  .scroll-content::-webkit-scrollbar-track { background: transparent; }
+  .scroll-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 4px; }
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tbl th {
+    background: rgba(255,255,255,.1);
+    color: rgba(255,255,255,.9);
+    font-weight: 600;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  .tbl td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: rgba(255,255,255,.85);
+    vertical-align: top;
+  }
+  .tbl tr:last-child td { border-bottom: none; }
+  .section-pill {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .heading-line {
+    display: inline-block;
+    position: relative;
+  }
+  .heading-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--c400), var(--c300));
+    border-radius: 2px;
+  }
+  .pill-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .chk { color: var(--teal); font-weight: 700; }
   @media (max-width: 768px) {
+    .slide-inner { padding: 16px !important; }
     .grid.grid-cols-2,
     .grid.grid-cols-3,
     .grid.grid-cols-4,
     .grid.grid-cols-5 { grid-template-columns: 1fr !important; }
+    .flex.gap-8, .flex.gap-10, .flex.gap-12 { gap: 16px !important; }
     #quick-links { top: 16px; right: 16px; }
   }
 </style>
 </head>
 <body>
+
 <div id="progress-bar"></div>
 
 <div id="quick-links">
@@ -207,68 +242,83 @@
 <div id="deck">
 
 <div class="slide active" id="s1">
-  <div class="slide-inner" style="background:
-    radial-gradient(circle at top left, rgba(249,115,22,.28), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(20,184,166,.16), transparent 28%),
-    linear-gradient(145deg, #020617 0%, #0f172a 48%, #1f2937 100%);">
+  <div class="slide-inner" style="background:linear-gradient(145deg,var(--c950) 0%,var(--c800) 55%,var(--c900) 100%);">
     <div class="flex flex-col items-center justify-center flex-1 text-center px-8">
-      <div class="mb-6 text-7xl" style="filter:drop-shadow(0 0 28px rgba(249,115,22,.32))">🛍️</div>
-      <div class="section-pill mb-5" style="background:rgba(249,115,22,.14);color:#fdba74;border:1px solid rgba(249,115,22,.28)">
-        Project Proposal · 2026.04
+      <div class="mb-6 text-7xl" style="filter:drop-shadow(0 0 24px rgba(96,165,250,.4))">🛍️</div>
+      <div class="section-pill mb-5" style="background:rgba(96,165,250,.15);color:var(--c300);border:1px solid rgba(96,165,250,.3)">
+        프로젝트 제안서 · 2026.04
       </div>
-      <h1 class="font-black text-white mb-4" style="font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.08;letter-spacing:-1px;">
-        미국 인플루언서가 팔고<br>한국 소비자가 바로 사는 구조를 만듭니다
+      <h1 class="font-black text-white mb-3" style="font-size:clamp(2.2rem,5vw,4rem);line-height:1.1;letter-spacing:-1px;">
+        미국 인플루언서 역직구<br>커머스 플랫폼 구축
       </h1>
-      <p class="font-light max-w-4xl mb-4" style="font-size:clamp(1rem,2vw,1.28rem);color:#cbd5e1;line-height:1.85;">
-        이번 제안은 쇼핑몰 화면만 만드는 작업이 아닙니다.
-        인플루언서 유입 추적, 공급사 운영, 관리자 화면, 정산까지
-        <strong style="color:#fdba74;">실제로 굴러가는 역직구 커머스 운영 시스템</strong>을 만드는 제안입니다.
+      <p class="font-light mb-2" style="font-size:clamp(.98rem,2.2vw,1.24rem);color:var(--c300);letter-spacing:1px;">
+        링크 유입부터 공급사 운영, 관리자 콘솔, 정산까지 한 번에
       </p>
-      <div class="mt-3 h-px w-56" style="background:linear-gradient(90deg,transparent,#fb923c,transparent)"></div>
-      <p class="mt-5 text-sm" style="color:rgba(255,255,255,.52);letter-spacing:.04em;">
+      <div class="mt-3 h-px w-56" style="background:linear-gradient(90deg,transparent,var(--c400),transparent)"></div>
+      <p class="mt-5 text-sm" style="color:rgba(255,255,255,.45);letter-spacing:.5px;">
         원클릭사이트제작 프로젝트 제안서
       </p>
     </div>
-    <div class="flex justify-center pb-10 gap-12 flex-wrap px-8">
-      <div class="text-center"><div class="text-2xl font-black" style="color:#fdba74">3천5백만원</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">제안 금액</div></div>
-      <div class="text-center"><div class="text-2xl font-black" style="color:#fdba74">60일</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">납기</div></div>
-      <div class="text-center"><div class="text-2xl font-black" style="color:#fdba74">12개월</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">무상 유지보수</div></div>
-      <div class="text-center"><div class="text-2xl font-black" style="color:#fdba74">전체 구축</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">축소형 데모 아님</div></div>
+    <div class="flex justify-center pb-10 gap-10 flex-wrap px-8">
+      <div class="text-center">
+        <div class="text-2xl font-black" style="color:var(--c400)">3천5백만원</div>
+        <div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">제안 금액</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-black" style="color:var(--c400)">60일</div>
+        <div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">개발 기간</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-black" style="color:var(--c400)">무상보수 12개월</div>
+        <div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">오픈 후 안정화 지원</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-black" style="color:var(--c400)">Jamie · Tom</div>
+        <div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">커머스 리드 체제</div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="slide" id="s2">
-  <div class="slide-inner" style="background:var(--sand);">
+  <div class="slide-inner" style="background:var(--light-bg);">
     <div class="flex items-center px-14 pt-12 pb-0 shrink-0">
       <div class="section-pill" style="background:var(--c100);color:var(--c800);border:1px solid var(--c200)">
-        Section 1 · 프로젝트 이해
+        섹션 1 · 수행 팀
       </div>
     </div>
     <div class="flex flex-col justify-center flex-1 px-14 pb-10">
-      <h2 class="font-black mb-8" style="font-size:clamp(1.9rem,3.5vw,2.9rem);color:var(--c800);line-height:1.15;">
-        <span class="heading-line">이번 프로젝트를 이렇게 이해했습니다</span>
+      <h2 class="font-black mb-8" style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--c800);line-height:1.15;">
+        <span class="heading-line">이번 프로젝트, 이런 팀이 맡아야 합니다</span>
       </h2>
       <div class="grid grid-cols-2 gap-6">
-        <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 6px 24px rgba(124,45,18,.08);">
-          <div class="text-3xl mb-3">🎯</div>
-          <h3 class="font-bold text-base mb-2" style="color:var(--c800)">인플루언서가 데려온 고객이 실제 구매까지 이어져야 합니다</h3>
-          <p class="text-sm leading-relaxed" style="color:#475569;">미국 인플루언서가 SNS에서 링크를 뿌리고, 한국 소비자가 그 링크를 타고 들어와 상품을 보고 결제하는 흐름이 가장 중요합니다.</p>
+        <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 4px 24px rgba(30,58,95,.06);">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="pill-tag" style="background:var(--c100);color:var(--c800)">Jamie</span>
+          </div>
+          <h3 class="font-bold text-base mb-2" style="color:var(--c800)">커머스 운영 복잡도를 직접 겪은 리드</h3>
+          <p class="text-sm leading-relaxed" style="color:#374151;">올웨이즈 커머스 초기 멤버, 미국 진출 MVP 작업 경험, 티켓매치 다자간 정산, 두잇 라이더팀/사장님팀 경험까지 이번 프로젝트 핵심 조건과 맞닿아 있는 이력이 있습니다.</p>
         </div>
-        <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 6px 24px rgba(124,45,18,.08);">
-          <div class="text-3xl mb-3">📊</div>
-          <h3 class="font-bold text-base mb-2" style="color:var(--c800)">누가 얼마를 팔았는지 근거가 남아야 합니다</h3>
-          <p class="text-sm leading-relaxed" style="color:#475569;">특정 링크로 들어온 고객이 다른 상품을 사더라도 누구 실적인지 귀속되어야 하고, 할인/환불까지 반영된 실매출 기준 정산이 가능해야 합니다.</p>
+        <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 4px 24px rgba(30,58,95,.06);">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="pill-tag" style="background:#ecfdf5;color:#059669;border:1px solid #a7f3d0">Tom</span>
+          </div>
+          <h3 class="font-bold text-base mb-2" style="color:var(--c800)">대규모 커머스 구조를 다뤄본 아키텍트</h3>
+          <p class="text-sm leading-relaxed" style="color:#374151;">前 쿠팡 리드 엔지니어 출신입니다. 주문, 운영 백오피스, 정산처럼 트래픽과 예외처리가 많은 커머스 구조를 안정적으로 설계할 수 있습니다.</p>
         </div>
-        <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 6px 24px rgba(124,45,18,.08);">
-          <div class="text-3xl mb-3">🏪</div>
-          <h3 class="font-bold text-base mb-2" style="color:var(--c800)">공급사와 운영팀이 같이 써야 하는 시스템입니다</h3>
-          <p class="text-sm leading-relaxed" style="color:#475569;">공급사는 상품/재고/출고를 관리하고, 운영팀은 승인/검수/CS/프로모션/예외처리를 봐야 하므로 양쪽 화면이 모두 중요합니다.</p>
+        <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 4px 24px rgba(30,58,95,.06);">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="pill-tag" style="background:rgba(96,165,250,.15);color:var(--c800)">실전 지표</span>
+          </div>
+          <h3 class="font-bold text-base mb-2" style="color:var(--c800)">보여주기용 이력이 아닙니다</h3>
+          <p class="text-sm leading-relaxed" style="color:#374151;">MAU 310만, 월 거래액 530억 규모 커머스를 경험한 팀입니다. 이번 제안도 화면 제작이 아니라 실제 오픈과 운영을 기준으로 접근합니다.</p>
         </div>
-        <div class="rounded-2xl p-6" style="background:linear-gradient(135deg,#7c2d12,#9a3412);border:1.5px solid #7c2d12;box-shadow:0 10px 28px rgba(124,45,18,.2);">
-          <div class="text-3xl mb-3">✅</div>
-          <h3 class="font-bold text-base mb-2 text-white">이번 제안은 운영 가능한 수준까지 포함합니다</h3>
-          <p class="text-sm leading-relaxed" style="color:#fed7aa;">기능 데모가 아니라 실제로 오픈하고 운영팀이 매일 쓸 수 있는 수준까지 포함한 제안입니다.</p>
+        <div class="rounded-2xl p-6" style="background:var(--c800);border:1.5px solid var(--c900);box-shadow:0 4px 24px rgba(30,58,95,.2);">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="pill-tag" style="background:rgba(96,165,250,.2);color:var(--c300)">핵심 메시지</span>
+          </div>
+          <h3 class="font-bold text-base mb-2 text-white">이번 프로젝트는 저희 팀에 익숙한 문제입니다</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--c300);">콘텐츠 유입, 다자간 운영, 공급사 콘솔, 관리자 승인, 정산 원장, 이후 확장까지. 필요한 난이도가 서로 분리된 영역이 아니라 한 몸처럼 얽힌 커머스 문제라는 점을 정확히 이해하고 있습니다.</p>
         </div>
       </div>
     </div>
@@ -276,40 +326,97 @@
 </div>
 
 <div class="slide" id="s3">
-  <div class="slide-inner" style="background:linear-gradient(135deg,#111827 0%, #1f2937 50%, #0f172a 100%);">
-    <div class="flex flex-col justify-center flex-1 px-14 pb-8 pt-10">
-      <div class="section-pill mb-6" style="background:rgba(249,115,22,.14);color:#fdba74;border:1px solid rgba(249,115,22,.28)">Section 1 · 목표 정의</div>
-      <h2 class="font-black text-white mb-8" style="font-size:clamp(1.9rem,3.5vw,2.9rem);line-height:1.15;"><span class="heading-line">프로젝트 목표</span></h2>
-      <div class="grid grid-cols-2 gap-5">
-        <div class="flex items-start gap-5 rounded-xl p-5" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-black" style="background:#fb923c;color:#111827">1</div><div><h3 class="font-bold text-base text-white mb-1">인플루언서 유입을 실제 매출로 연결</h3><p class="text-sm" style="color:rgba(255,255,255,.68)">링크, 전용 쿠폰, 브릿지 페이지를 통해 구매까지 끌고 갑니다.</p></div></div>
-        <div class="flex items-start gap-5 rounded-xl p-5" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-black" style="background:#fb923c;color:#111827">2</div><div><h3 class="font-bold text-base text-white mb-1">공급사와 관리자 운영을 한곳에서 처리</h3><p class="text-sm" style="color:rgba(255,255,255,.68)">상품, 재고, 출고, 승인, CS, 예외처리를 분리된 화면으로 관리합니다.</p></div></div>
-        <div class="flex items-start gap-5 rounded-xl p-5" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-black" style="background:#fb923c;color:#111827">3</div><div><h3 class="font-bold text-base text-white mb-1">정산 근거를 남기는 구조 확보</h3><p class="text-sm" style="color:rgba(255,255,255,.68)">판매, 할인, 환불, 수수료가 모두 반영된 정산 원장을 제공합니다.</p></div></div>
-        <div class="flex items-start gap-5 rounded-xl p-5" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.28);"><div class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-black" style="background:#fdba74;color:#7c2d12">4</div><div><h3 class="font-bold text-base text-white mb-1">향후 마이크로사이트 확장까지 고려</h3><p class="text-sm" style="color:#fed7aa;">처음부터 인플루언서별 편집숍/마이크로사이트로 커질 수 있는 구조를 염두에 두고 설계합니다.</p></div></div>
+  <div class="slide-inner" style="background:linear-gradient(135deg,var(--c950) 0%,var(--c800) 100%);">
+    <div class="flex flex-col justify-center flex-1 px-14 pb-8">
+      <div class="section-pill mb-6" style="background:rgba(96,165,250,.15);color:var(--c300);border:1px solid rgba(96,165,250,.3)">
+        섹션 1 · 프로젝트 이해
       </div>
-      <div class="flex gap-8 mt-8 flex-wrap">
-        <div class="text-center"><div class="text-lg font-black" style="color:#fdba74">한국 소비자 구매 흐름</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">국내 결제/배송/CS 기준</div></div>
-        <div class="text-center"><div class="text-lg font-black" style="color:#fdba74">유입 추적 준비</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">링크·쿠폰·캠페인 실적 귀속</div></div>
-        <div class="text-center"><div class="text-lg font-black" style="color:#fdba74">공급사·관리자 운영</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">양측 운영 콘솔 제공</div></div>
-        <div class="text-center"><div class="text-lg font-black" style="color:#fdba74">정산 근거가 남는 구조</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.5)">재계산 가능한 정산 원장</div></div>
+      <h2 class="font-black text-white mb-10" style="font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.15;">
+        <span class="heading-line">이 프로젝트를 쇼핑몰 구축으로 보면 안 됩니다</span>
+      </h2>
+      <div class="grid grid-cols-2 gap-5">
+        <div class="flex items-start gap-5 rounded-xl p-5" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);">
+          <div class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-black" style="background:var(--c400);color:var(--c950)">1</div>
+          <div>
+            <h3 class="font-bold text-base text-white mb-1">인플루언서 유입이 실매출로 귀속돼야 합니다</h3>
+            <p class="text-sm" style="color:rgba(255,255,255,.65)">누가 어떤 링크와 콘텐츠로 고객을 데려왔는지 남아야 하고, 그 고객이 산 상품과 환불까지 추적돼야 합니다.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-5 rounded-xl p-5" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);">
+          <div class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-black" style="background:var(--c400);color:var(--c950)">2</div>
+          <div>
+            <h3 class="font-bold text-base text-white mb-1">공급사가 직접 운영할 수 있어야 합니다</h3>
+            <p class="text-sm" style="color:rgba(255,255,255,.65)">상품, 옵션, 재고, 출고, 송장, 주문 대응까지 공급사가 스스로 처리할 수 있는 운영 화면이 핵심입니다.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-5 rounded-xl p-5" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);">
+          <div class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-black" style="background:var(--c400);color:var(--c950)">3</div>
+          <div>
+            <h3 class="font-bold text-base text-white mb-1">운영팀이 승인과 예외처리를 장악해야 합니다</h3>
+            <p class="text-sm" style="color:rgba(255,255,255,.65)">인플루언서 승인, 공급사 검수, 위험 주문, 프로모션 통제, CS 예외 처리까지 운영 관리자 콘솔이 필요합니다.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-5 rounded-xl p-5" style="background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.28);">
+          <div class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-black" style="background:#fff;color:var(--c800)">4</div>
+          <div>
+            <h3 class="font-bold text-base text-white mb-1">정산이 마지막이 아니라 처음부터 설계돼야 합니다</h3>
+            <p class="text-sm" style="color:var(--c300)">인플루언서 수수료, 공급사 정산, 쿠폰 부담, 환불 차감을 나중에 붙이면 반드시 꼬입니다. 시작부터 정산 원장을 중심에 둬야 합니다.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="slide" id="s4">
-  <div class="slide-inner" style="background:var(--sand);">
-    <div class="flex items-center px-14 pt-12 pb-0 shrink-0"><div class="section-pill" style="background:var(--c100);color:var(--c800);border:1px solid var(--c200)">Section 2 · 전체 범위</div></div>
-    <div class="scroll-content px-14 pb-12">
-      <div class="pt-6 pb-10">
-        <h2 class="font-black mb-6" style="font-size:clamp(1.9rem,3.5vw,2.9rem);color:var(--c800);line-height:1.15;"><span class="heading-line">제안 범위 전체 구성</span></h2>
-        <p class="text-base mb-8 max-w-4xl" style="color:#475569;line-height:1.9;">이번 제안은 소비자용 쇼핑몰만 만드는 범위가 아닙니다. 인플루언서, 공급사, 운영 관리자, 정산 관리자까지 포함한 전체 구축안입니다.</p>
-        <div class="grid grid-cols-3 gap-5">
-          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 28px rgba(124,45,18,.08);"><div class="text-3xl mb-3">🧑‍💻</div><h3 class="font-bold text-base mb-3" style="color:var(--c800)">소비자 플랫폼</h3><ul class="text-sm space-y-2 leading-relaxed" style="color:#475569;"><li>· 반응형 웹 쇼핑 경험</li><li>· 상품 상세/장바구니/결제</li><li>· 주문 조회/배송 조회</li><li>· 쿠폰/프로모션</li></ul></div>
-          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 28px rgba(124,45,18,.08);"><div class="text-3xl mb-3">🔗</div><h3 class="font-bold text-base mb-3" style="color:var(--c800)">인플루언서 모듈</h3><ul class="text-sm space-y-2 leading-relaxed" style="color:#475569;"><li>· 전용 링크/코드 발급</li><li>· 브릿지 페이지/큐레이션</li><li>· 성과 대시보드</li><li>· 지급 예정 금액 확인</li></ul></div>
-          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 28px rgba(124,45,18,.08);"><div class="text-3xl mb-3">🏪</div><h3 class="font-bold text-base mb-3" style="color:var(--c800)">공급사 콘솔</h3><ul class="text-sm space-y-2 leading-relaxed" style="color:#475569;"><li>· 상품/옵션/SKU 관리</li><li>· 재고/출고/배송 관리</li><li>· 주문/클레임 대응</li><li>· 판매/정산 확인</li></ul></div>
-          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 28px rgba(124,45,18,.08);"><div class="text-3xl mb-3">🛠️</div><h3 class="font-bold text-base mb-3" style="color:var(--c800)">운영 관리자</h3><ul class="text-sm space-y-2 leading-relaxed" style="color:#475569;"><li>· 인플루언서/공급사 승인</li><li>· 상품 검수/프로모션 운영</li><li>· 주문/CS/예외 처리</li><li>· 운영 리포트</li></ul></div>
-          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 28px rgba(124,45,18,.08);"><div class="text-3xl mb-3">💸</div><h3 class="font-bold text-base mb-3" style="color:var(--c800)">정산 관리자</h3><ul class="text-sm space-y-2 leading-relaxed" style="color:#475569;"><li>· 판매/환불/수수료 원장</li><li>· 파트너별 정산 규칙</li><li>· 정산서/지급 내역</li><li>· 수기 조정 및 감사 로그</li></ul></div>
-          <div class="rounded-2xl p-6" style="background:linear-gradient(135deg,#7c2d12,#9a3412);border:1.5px solid #7c2d12;box-shadow:0 12px 32px rgba(124,45,18,.22);"><div class="text-3xl mb-3">🚀</div><h3 class="font-bold text-base mb-3 text-white">오픈 패키지</h3><ul class="text-sm space-y-2 leading-relaxed" style="color:#fed7aa;"><li>· 관리자 가이드</li><li>· QA/UAT, 배포</li><li>· 기본 모니터링</li><li>· 12개월 무상 유지보수</li></ul></div>
+  <div class="slide-inner" style="background:var(--light-bg);">
+    <div class="flex items-center px-14 pt-12 pb-0 shrink-0">
+      <div class="section-pill" style="background:var(--c100);color:var(--c800);border:1px solid var(--c200)">
+        섹션 2 · 프로젝트 목표
+      </div>
+    </div>
+    <div class="flex flex-col justify-center flex-1 px-14 pb-10">
+      <h2 class="font-black mb-8" style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--c800);line-height:1.15;">
+        <span class="heading-line">이번 구축의 목표</span>
+      </h2>
+      <div class="grid grid-cols-2 gap-6 mb-8">
+        <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 4px 24px rgba(30,58,95,.06);">
+          <div class="text-3xl mb-3">🔗</div>
+          <h3 class="font-bold text-base mb-2" style="color:var(--c800)">인플루언서 링크를 실제 구매까지 연결</h3>
+          <p class="text-sm leading-relaxed" style="color:#374151">전용 링크, 코드, 큐레이션 페이지를 통해 유입 경로와 매출 귀속을 분명하게 만듭니다.</p>
+        </div>
+        <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 4px 24px rgba(30,58,95,.06);">
+          <div class="text-3xl mb-3">🏪</div>
+          <h3 class="font-bold text-base mb-2" style="color:var(--c800)">공급사 운영을 시스템 안으로 넣기</h3>
+          <p class="text-sm leading-relaxed" style="color:#374151">상품과 재고를 수기로 받는 구조가 아니라, 공급사가 직접 관리하고 운영팀이 통제하는 구조로 바꿉니다.</p>
+        </div>
+        <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 4px 24px rgba(30,58,95,.06);">
+          <div class="text-3xl mb-3">🧾</div>
+          <h3 class="font-bold text-base mb-2" style="color:var(--c800)">정산 분쟁이 적은 원장 구조 확보</h3>
+          <p class="text-sm leading-relaxed" style="color:#374151">판매, 할인, 환불, 수수료, 조정 내역이 남는 정산 원장을 만들어 재계산과 감사가 가능하게 합니다.</p>
+        </div>
+        <div class="rounded-2xl p-6" style="background:var(--c800);border:1.5px solid var(--c900);box-shadow:0 4px 24px rgba(30,58,95,.2);">
+          <div class="text-3xl mb-3">🚀</div>
+          <h3 class="font-bold text-base mb-2 text-white">마이크로사이트 확장까지 준비</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--c300)">처음 오픈은 통합몰로 가되, 이후 인플루언서별 편집숍이나 마이크로사이트로 확장할 수 있는 구조를 염두에 둡니다.</p>
+        </div>
+      </div>
+      <div class="flex gap-10 flex-wrap">
+        <div class="text-center">
+          <div class="text-2xl font-black" style="color:var(--c600)">1차 오픈</div>
+          <div class="text-xs mt-1" style="color:#64748b">국내 결제 기준 안정적 오픈</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-black" style="color:var(--c600)">역할 분리</div>
+          <div class="text-xs mt-1" style="color:#64748b">소비자 · 인플루언서 · 공급사 · 관리자</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-black" style="color:var(--c600)">정산 중심</div>
+          <div class="text-xs mt-1" style="color:#64748b">주문과 지급이 연결된 구조</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-black" style="color:var(--c600)">확장 준비</div>
+          <div class="text-xs mt-1" style="color:#64748b">마이크로사이트·해외 지급 2차 확장</div>
         </div>
       </div>
     </div>
@@ -317,30 +424,79 @@
 </div>
 
 <div class="slide" id="s5">
-  <div class="slide-inner" style="background:linear-gradient(135deg,#111827 0%, #1f2937 45%, #0f172a 100%);">
+  <div class="slide-inner" style="background:linear-gradient(135deg,var(--c950) 0%,var(--c800) 100%);">
     <div class="scroll-content px-14 pb-12">
       <div class="pt-10">
-        <div class="section-pill mb-6" style="background:rgba(249,115,22,.14);color:#fdba74;border:1px solid rgba(249,115,22,.28)">Section 3 · 구축 방식</div>
-        <h2 class="font-black text-white mb-8" style="font-size:clamp(1.9rem,3.5vw,2.9rem);line-height:1.15;"><span class="heading-line">이런 구조로 만들겠습니다</span></h2>
-        <div class="grid grid-cols-3 gap-5 mb-8">
-          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="text-3xl mb-3">🌐</div><h3 class="font-bold text-base mb-2 text-white">사용자 화면과 운영 화면을 분리</h3><p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.68);">소비자용 쇼핑 경험, 인플루언서용 성과 화면, 공급사용 관리 화면, 관리자 화면을 역할별로 나눠 복잡도를 줄입니다.</p></div>
-          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="text-3xl mb-3">⚙️</div><h3 class="font-bold text-base mb-2 text-white">주문·프로모션·정산을 한 몸처럼 설계</h3><p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.68);">상품, 주문, 할인, 환불, 정산 규칙이 서로 따로 놀지 않도록 처음부터 같은 기준으로 설계합니다.</p></div>
-          <div class="rounded-2xl p-6" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.28);"><div class="text-3xl mb-3">📦</div><h3 class="font-bold text-base mb-2 text-white">결제·배송·알림 연동까지 준비</h3><p class="text-sm leading-relaxed" style="color:#fed7aa;">국내 결제, 배송 추적, 알림 메시지, 매출 분석 도구를 붙여 실제 운영 가능한 구조로 마무리합니다.</p></div>
+        <div class="section-pill mb-6" style="background:rgba(96,165,250,.15);color:var(--c300);border:1px solid rgba(96,165,250,.3)">
+          섹션 3 · 제안 범위
         </div>
-        <div class="rounded-3xl p-6 mb-8" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);">
-          <div class="grid grid-cols-5 gap-4 items-center text-center">
-            <div class="rounded-2xl p-4" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);"><div class="text-sm font-bold text-white mb-1">소비자 쇼핑 화면</div><div class="text-xs" style="color:rgba(255,255,255,.52)">상품 탐색 · 결제 · 주문 조회</div></div>
-            <div class="text-2xl font-black" style="color:#fdba74;">→</div>
-            <div class="rounded-2xl p-4" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.28);"><div class="text-sm font-bold text-white mb-1">공통 운영 엔진</div><div class="text-xs" style="color:#fed7aa;">상품 · 주문 · 클레임 · 정산</div></div>
-            <div class="text-2xl font-black" style="color:#fdba74;">→</div>
-            <div class="rounded-2xl p-4" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);"><div class="text-sm font-bold text-white mb-1">관리자 / 공급사 화면</div><div class="text-xs" style="color:rgba(255,255,255,.52)">운영 · 공급 · 정산 관리</div></div>
+        <h2 class="font-black text-white mb-8" style="font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.15;">
+          <span class="heading-line">전체 범위 구성</span>
+        </h2>
+        <p class="text-base mb-8 max-w-4xl" style="color:rgba(255,255,255,.68);line-height:1.9;">
+          이번 제안은 소비자 화면만 만드는 범위가 아닙니다. 인플루언서 관리, 공급사 운영, 관리자 콘솔, 정산, 오픈 지원까지 포함하는 풀스코프 구축안입니다.
+        </p>
+        <div class="grid grid-cols-3 gap-5">
+          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-3xl mb-3">🛒</div>
+            <h3 class="font-bold text-base mb-3 text-white">소비자 쇼핑몰</h3>
+            <ul class="text-sm space-y-2 leading-relaxed" style="color:rgba(255,255,255,.68);">
+              <li>· 반응형 웹 쇼핑 경험</li>
+              <li>· 상품 상세, 장바구니, 결제</li>
+              <li>· 주문 조회, 배송 조회</li>
+              <li>· 쿠폰, 프로모션, 기본 마이페이지</li>
+            </ul>
           </div>
-        </div>
-        <div class="grid grid-cols-4 gap-5">
-          <div class="rounded-2xl p-5" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="text-xs font-bold mb-2" style="color:#fdba74">사용자 화면</div><div class="text-sm text-white font-semibold mb-1">반응형 웹 기반 쇼핑 경험</div><p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.58);">검색 유입 대응, 상품 탐색, 결제, 마이페이지</p></div>
-          <div class="rounded-2xl p-5" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="text-xs font-bold mb-2" style="color:#fdba74">운영 엔진</div><div class="text-sm text-white font-semibold mb-1">주문과 정산이 연결된 백엔드</div><p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.58);">운영 규칙, 감사 로그, 정산 원장, 관리자 API</p></div>
-          <div class="rounded-2xl p-5" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="text-xs font-bold mb-2" style="color:#fdba74">배포 환경</div><div class="text-sm text-white font-semibold mb-1">빠르고 관리 가능한 인프라</div><p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.58);">정적 배포, 저장소, 배치 작업, 모니터링, 백업</p></div>
-          <div class="rounded-2xl p-5" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.28);"><div class="text-xs font-bold mb-2" style="color:#fdba74">외부 연동</div><div class="text-sm text-white font-semibold mb-1">결제 / 배송 / 알림 / 분석</div><p class="text-xs leading-relaxed" style="color:#fed7aa;">국내 결제수단, 배송 추적, 알림, 유입/매출 분석</p></div>
+          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-3xl mb-3">📣</div>
+            <h3 class="font-bold text-base mb-3 text-white">인플루언서 모듈</h3>
+            <ul class="text-sm space-y-2 leading-relaxed" style="color:rgba(255,255,255,.68);">
+              <li>· 전용 링크와 코드 발급</li>
+              <li>· 콘텐츠형 큐레이션 랜딩</li>
+              <li>· 성과 대시보드</li>
+              <li>· 예정 정산금 확인</li>
+            </ul>
+          </div>
+          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-3xl mb-3">🏭</div>
+            <h3 class="font-bold text-base mb-3 text-white">공급사 콘솔</h3>
+            <ul class="text-sm space-y-2 leading-relaxed" style="color:rgba(255,255,255,.68);">
+              <li>· 상품, 옵션, SKU 관리</li>
+              <li>· 재고, 출고, 송장 입력</li>
+              <li>· 주문 대응, 클레임 확인</li>
+              <li>· 판매 및 정산 확인</li>
+            </ul>
+          </div>
+          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-3xl mb-3">🛠️</div>
+            <h3 class="font-bold text-base mb-3 text-white">운영 관리자 콘솔</h3>
+            <ul class="text-sm space-y-2 leading-relaxed" style="color:rgba(255,255,255,.68);">
+              <li>· 인플루언서, 공급사 승인</li>
+              <li>· 상품 검수, 프로모션 운영</li>
+              <li>· 주문, CS, 예외 처리</li>
+              <li>· 운영 리포트와 로그</li>
+            </ul>
+          </div>
+          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-3xl mb-3">💸</div>
+            <h3 class="font-bold text-base mb-3 text-white">정산 관리자</h3>
+            <ul class="text-sm space-y-2 leading-relaxed" style="color:rgba(255,255,255,.68);">
+              <li>· 판매, 환불, 수수료 원장</li>
+              <li>· 파트너별 정산 규칙</li>
+              <li>· 정산서, 지급 상태 관리</li>
+              <li>· 수기 조정과 감사 로그</li>
+            </ul>
+          </div>
+          <div class="rounded-2xl p-6" style="background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.28);">
+            <div class="text-3xl mb-3">🚀</div>
+            <h3 class="font-bold text-base mb-3 text-white">오픈 패키지</h3>
+            <ul class="text-sm space-y-2 leading-relaxed" style="color:var(--c300);">
+              <li>· 운영 가이드와 인수인계</li>
+              <li>· QA, UAT, 배포</li>
+              <li>· 기본 모니터링과 점검</li>
+              <li>· 무상보수 12개월</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -348,56 +504,382 @@
 </div>
 
 <div class="slide" id="s6">
-  <div class="slide-inner" style="background:var(--sand);">
-    <div class="scroll-content px-14 pb-12"><div class="pt-10"><div class="section-pill mb-6" style="background:var(--c100);color:var(--c800);border:1px solid var(--c200)">Section 4 · 핵심 기능</div><h2 class="font-black mb-8" style="font-size:clamp(1.9rem,3.5vw,2.9rem);color:var(--c800);line-height:1.15;"><span class="heading-line">핵심 기능 · 소비자 / 인플루언서</span></h2><div class="grid grid-cols-3 gap-5"><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);"><div class="text-3xl mb-3">📱</div><h3 class="font-bold text-base mb-2" style="color:var(--c800)">브릿지 페이지와 콘텐츠형 랜딩</h3><p class="text-sm leading-relaxed" style="color:#475569;">바로 상품 상세로 보내거나, 인플루언서 소개와 추천 상품을 보여주는 중간 페이지를 구성합니다.</p></div><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);"><div class="text-3xl mb-3">🛒</div><h3 class="font-bold text-base mb-2" style="color:var(--c800)">구매 전환 UX</h3><p class="text-sm leading-relaxed" style="color:#475569;">장바구니, 즉시구매, 쿠폰 적용, 결제 실패 복구 흐름까지 고려합니다.</p></div><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);"><div class="text-3xl mb-3">🇰🇷</div><h3 class="font-bold text-base mb-2" style="color:var(--c800)">한국 소비자 기준 쇼핑 경험</h3><p class="text-sm leading-relaxed" style="color:#475569;">국문 UI, 국내 결제수단, 주소/연락처 입력, 배송/환불 문의 흐름을 맞춥니다.</p></div><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);"><div class="text-3xl mb-3">🔍</div><h3 class="font-bold text-base mb-2" style="color:var(--c800)">유입 실적 추적</h3><p class="text-sm leading-relaxed" style="color:#475569;">링크/코드/캠페인 기준 클릭, 전환, 재구매, 순매출 기여도를 집계합니다.</p></div><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);"><div class="text-3xl mb-3">🎥</div><h3 class="font-bold text-base mb-2" style="color:var(--c800)">인플루언서 대시보드</h3><p class="text-sm leading-relaxed" style="color:#475569;">본인 링크 성과, 확정/예정 수수료, 정산 이력, 캠페인 상태를 확인할 수 있습니다.</p></div><div class="rounded-2xl p-6" style="background:linear-gradient(135deg,#9a3412,#c2410c);border:1.5px solid #9a3412;"><div class="text-3xl mb-3">⭐</div><h3 class="font-bold text-base mb-2 text-white">재구매까지 보는 구조</h3><p class="text-sm leading-relaxed" style="color:#fed7aa;">첫 구매만 보는 게 아니라 쿠폰 재발급, 리텐션 메시지, 재구매 기여도까지 고려합니다.</p></div></div></div></div>
+  <div class="slide-inner" style="background:var(--light-bg);">
+    <div class="scroll-content px-14 pb-12">
+      <div class="pt-10">
+        <div class="section-pill mb-6" style="background:var(--c100);color:var(--c800);border:1px solid var(--c200)">
+          섹션 4 · 운영 흐름
+        </div>
+        <h2 class="font-black mb-8" style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--c800);line-height:1.15;">
+          <span class="heading-line">핵심 운영 시나리오</span>
+        </h2>
+        <div class="grid grid-cols-5 gap-4 items-center text-center mb-8">
+          <div class="rounded-2xl p-4" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 4px 18px rgba(30,58,95,.05);">
+            <div class="text-sm font-bold mb-1" style="color:var(--c800)">1. 유입</div>
+            <div class="text-xs" style="color:#64748b">인플루언서 링크, 코드, 콘텐츠 랜딩</div>
+          </div>
+          <div class="text-2xl font-black" style="color:var(--c600)">→</div>
+          <div class="rounded-2xl p-4" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 4px 18px rgba(30,58,95,.05);">
+            <div class="text-sm font-bold mb-1" style="color:var(--c800)">2. 구매</div>
+            <div class="text-xs" style="color:#64748b">한국 소비자 결제, 주문 생성, 배송 처리</div>
+          </div>
+          <div class="text-2xl font-black" style="color:var(--c600)">→</div>
+          <div class="rounded-2xl p-4" style="background:var(--c800);border:1.5px solid var(--c900);box-shadow:0 4px 18px rgba(30,58,95,.14);">
+            <div class="text-sm font-bold mb-1 text-white">3. 운영/정산</div>
+            <div class="text-xs" style="color:var(--c300)">공급사 출고, 관리자 예외 처리, 정산 원장 반영</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6 mb-8">
+          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 6px 24px rgba(30,58,95,.06);">
+            <h3 class="font-bold text-lg mb-4" style="color:var(--c800)">운영 구조의 핵심</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3"><span class="chk mt-0.5">✓</span><div><div class="font-semibold text-sm" style="color:var(--c800)">유입 귀속과 주문 귀속을 분리하지 않습니다</div><div class="text-xs mt-1" style="color:#64748b">누가 고객을 데려왔는지와 무엇을 샀는지가 한 원장에 연결됩니다.</div></div></li>
+              <li class="flex items-start gap-3"><span class="chk mt-0.5">✓</span><div><div class="font-semibold text-sm" style="color:var(--c800)">공급사 운영과 관리자 통제를 동시에 잡습니다</div><div class="text-xs mt-1" style="color:#64748b">공급사는 실행하고 운영팀은 승인과 예외를 통제하는 구조입니다.</div></div></li>
+              <li class="flex items-start gap-3"><span class="chk mt-0.5">✓</span><div><div class="font-semibold text-sm" style="color:var(--c800)">정산은 재계산 가능한 원장으로 설계합니다</div><div class="text-xs mt-1" style="color:#64748b">할인, 환불, 수기 조정까지 남겨 분쟁과 재정리를 줄입니다.</div></div></li>
+            </ul>
+          </div>
+          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 6px 24px rgba(30,58,95,.06);">
+            <h3 class="font-bold text-lg mb-4" style="color:var(--c800)">확장 방향도 같이 잡습니다</h3>
+            <div class="rounded-xl p-4 mb-4" style="background:var(--c50);border:1px solid var(--c200);">
+              <div class="text-sm font-bold mb-1" style="color:var(--c800)">1차 오픈</div>
+              <div class="text-xs leading-relaxed" style="color:#475569;">통합몰 기준으로 빠르게 오픈하고, 인플루언서 링크와 정산 원장까지 운영 가능한 상태를 만듭니다.</div>
+            </div>
+            <div class="rounded-xl p-4" style="background:var(--c800);border:1px solid var(--c900);">
+              <div class="text-sm font-bold mb-1 text-white">2차 확장</div>
+              <div class="text-xs leading-relaxed" style="color:var(--c300);">성과가 검증된 인플루언서부터 마이크로사이트, 편집숍, 독립 랜딩 구조로 확장할 수 있게 설계합니다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="slide" id="s7">
-  <div class="slide-inner" style="background:linear-gradient(135deg,#111827 0%, #1f2937 45%, #0f172a 100%);">
-    <div class="scroll-content px-14 pb-12"><div class="pt-10"><div class="section-pill mb-6" style="background:rgba(249,115,22,.14);color:#fdba74;border:1px solid rgba(249,115,22,.28)">Section 4 · 핵심 기능</div><h2 class="font-black text-white mb-8" style="font-size:clamp(1.9rem,3.5vw,2.9rem);line-height:1.15;"><span class="heading-line">핵심 기능 · 공급사 / 관리자 / 정산</span></h2><div class="grid grid-cols-3 gap-5 mb-8"><div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="text-3xl mb-3">📦</div><h3 class="font-bold text-base mb-2 text-white">공급사 상품/재고 관리</h3><p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.68);">상품 등록, 옵션/SKU, 재고 변경, 품절 상태, 출고 처리, 송장 업로드.</p></div><div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="text-3xl mb-3">🧾</div><h3 class="font-bold text-base mb-2 text-white">주문/클레임 운영</h3><p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.68);">주문 상태 추적, 교환/반품 승인, 부분환불, CS 이력 관리.</p></div><div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><div class="text-3xl mb-3">🧑‍⚖️</div><h3 class="font-bold text-base mb-2 text-white">운영 관리자 승인 체계</h3><p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.68);">인플루언서/공급사 승인, 프로모션 검수, 위험 주문 모니터링.</p></div></div><div class="grid grid-cols-2 gap-6 mb-8"><div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><h3 class="font-bold text-white text-lg mb-4">정산 엔진 핵심</h3><ul class="space-y-3"><li class="flex items-start gap-3"><span class="chk mt-0.5">✓</span><div><div class="font-semibold text-sm text-white">정산 규칙 관리</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.56)">인플루언서 수수료, 공급사 정산율, 프로모션 비용 분담</div></div></li><li class="flex items-start gap-3"><span class="chk mt-0.5">✓</span><div><div class="font-semibold text-sm text-white">환불/취소 반영</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.56)">부분환불, 배송비 차감, 정산 보류/재계산</div></div></li><li class="flex items-start gap-3"><span class="chk mt-0.5">✓</span><div><div class="font-semibold text-sm text-white">지급 내역 및 로그</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.56)">월별 정산서, 지급 상태, 수기 조정 이력, 감사 로그</div></div></li></ul></div><div class="rounded-2xl p-6" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.28);"><h3 class="font-bold text-white text-lg mb-4">정산 공식 예시</h3><div class="rounded-xl p-4 mb-4" style="background:rgba(2,6,23,.28);border:1px solid rgba(255,255,255,.08);"><div class="text-sm font-semibold mb-2" style="color:#fdba74;">정산 대상 금액</div><div class="text-sm leading-relaxed" style="color:#fff7ed;">실결제금액 - 쿠폰/프로모션 부담금 - 환불/취소 반영 - PG/운영 수수료 - 인플루언서 수수료 + 정산 조정금</div></div><p class="text-xs leading-relaxed" style="color:#fed7aa;">주문 원장과 지급 원장을 분리해 재계산과 감사 추적이 가능하도록 설계합니다.</p></div></div></div></div>
+  <div class="slide-inner" style="background:linear-gradient(135deg,var(--c950) 0%,var(--c800) 100%);">
+    <div class="scroll-content px-14 pb-12">
+      <div class="pt-10">
+        <div class="section-pill mb-6" style="background:rgba(96,165,250,.15);color:var(--c300);border:1px solid rgba(96,165,250,.3)">
+          섹션 5 · 왜 저희인가
+        </div>
+        <h2 class="font-black text-white mb-8" style="font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.15;">
+          <span class="heading-line">이번 제안이 설득력 있는 이유</span>
+        </h2>
+        <div class="grid grid-cols-2 gap-6 mb-8">
+          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-xs font-bold mb-2" style="color:var(--c300)">Jamie · 올웨이즈</div>
+            <h3 class="font-bold text-base mb-2 text-white">콘텐츠 유입이 커머스가 되는 구조를 직접 만들었습니다</h3>
+            <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.68);">올웨이즈 커머스 초기 멤버 경험은 이번 프로젝트와 가장 직접적으로 맞닿아 있습니다. 유입, 전환, 운영 지표가 같이 움직이는 커머스 감각이 있습니다.</p>
+          </div>
+          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-xs font-bold mb-2" style="color:var(--c300)">Jamie · 티켓매치 / 두잇</div>
+            <h3 class="font-bold text-base mb-2 text-white">다자간 운영과 정산을 이미 다뤄봤습니다</h3>
+            <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.68);">티켓매치의 다자간 정산, 두잇 라이더팀/사장님팀 경험이 있어서 공급사·파트너·운영자 사이 예외처리를 구조로 풀 수 있습니다.</p>
+          </div>
+          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-xs font-bold mb-2" style="color:var(--c300)">Jamie · 미국 진출 MVP</div>
+            <h3 class="font-bold text-base mb-2 text-white">해외 요소를 막연하게 다루지 않습니다</h3>
+            <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.68);">미국 진출 MVP 작업 경험이 있어 해외 인플루언서와 국내 소비자 사이의 어색한 지점을 현실적으로 정리할 수 있습니다.</p>
+          </div>
+          <div class="rounded-2xl p-6" style="background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.28);">
+            <div class="text-xs font-bold mb-2" style="color:var(--c300)">Tom · 前 쿠팡 리드 엔지니어</div>
+            <h3 class="font-bold text-base mb-2 text-white">운영 규모가 커져도 버티는 구조로 갑니다</h3>
+            <p class="text-sm leading-relaxed" style="color:var(--c300);">정산과 운영 백오피스는 처음에는 단순해 보여도 규모가 붙으면 바로 복잡해집니다. Tom이 그 지점을 아키텍처 단계에서 막아줍니다.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-5">
+          <div class="rounded-2xl p-5" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-xs font-bold mb-2" style="color:var(--c300)">유입</div>
+            <div class="text-sm text-white font-semibold mb-1">콘텐츠와 커머스 연결 경험</div>
+            <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.58);">링크를 뿌리고 끝내는 구조가 아니라 구매까지 이어지는 흐름을 이해합니다.</p>
+          </div>
+          <div class="rounded-2xl p-5" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-xs font-bold mb-2" style="color:var(--c300)">운영</div>
+            <div class="text-sm text-white font-semibold mb-1">공급사와 운영팀을 동시에 보는 시야</div>
+            <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.58);">벤더가 직접 써야 하는 화면과 관리자가 통제해야 하는 화면을 따로 압니다.</p>
+          </div>
+          <div class="rounded-2xl p-5" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);">
+            <div class="text-xs font-bold mb-2" style="color:var(--c300)">정산</div>
+            <div class="text-sm text-white font-semibold mb-1">예외와 분쟁을 줄이는 원장 설계</div>
+            <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.58);">환불, 프로모션 비용, 조정 내역이 남아야 운영팀이 덜 힘들어집니다.</p>
+          </div>
+          <div class="rounded-2xl p-5" style="background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.28);">
+            <div class="text-xs font-bold mb-2" style="color:var(--c300)">확장</div>
+            <div class="text-sm text-white font-semibold mb-1">1차 오픈과 2차 확장을 분리</div>
+            <p class="text-xs leading-relaxed" style="color:var(--c300);">처음부터 모든 것을 넣지 않고, 운영이 되는 구조부터 정확히 열겠습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="slide" id="s8">
-  <div class="slide-inner" style="background:var(--sand);">
-    <div class="scroll-content px-14 pb-12"><div class="pt-10"><div class="section-pill mb-6" style="background:var(--c100);color:var(--c800);border:1px solid var(--c200)">Section 5 · 구현 접근</div><h2 class="font-black mb-8" style="font-size:clamp(1.9rem,3.5vw,2.9rem);color:var(--c800);line-height:1.15;"><span class="heading-line">구현 접근 방식</span></h2><div class="grid grid-cols-2 gap-6 mb-8"><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(124,45,18,.08);"><div class="text-xs font-bold mb-2" style="color:var(--c700)">1단계</div><h3 class="font-bold text-base mb-2" style="color:var(--c800)">요구사항 정리와 화면 구조 확정</h3><p class="text-sm leading-relaxed" style="color:#475569;">역할/권한, 화면 흐름, 운영 정책, 핵심 화면 와이어프레임을 먼저 고정합니다.</p></div><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(124,45,18,.08);"><div class="text-xs font-bold mb-2" style="color:var(--c700)">2단계</div><h3 class="font-bold text-base mb-2" style="color:var(--c800)">쇼핑 경험과 주문 흐름 구축</h3><p class="text-sm leading-relaxed" style="color:#475569;">상품, 할인, 주문, 결제, 환불까지 소비자 입장에서 끊기지 않게 만듭니다.</p></div><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(124,45,18,.08);"><div class="text-xs font-bold mb-2" style="color:var(--c700)">3단계</div><h3 class="font-bold text-base mb-2" style="color:var(--c800)">공급사 운영과 정산 체계 구축</h3><p class="text-sm leading-relaxed" style="color:#475569;">공급사 화면, 관리자 화면, 정산 원장, 지급 리포트가 함께 돌아가도록 구성합니다.</p></div><div class="rounded-2xl p-6" style="background:linear-gradient(135deg,#9a3412,#c2410c);border:1.5px solid #9a3412;box-shadow:0 10px 28px rgba(124,45,18,.2);"><div class="text-xs font-bold mb-2" style="color:#fdba74">4단계</div><h3 class="font-bold text-base mb-2 text-white">오픈 준비와 운영 인수인계</h3><p class="text-sm leading-relaxed" style="color:#fed7aa;">QA/UAT, 테스트 데이터, 운영 매뉴얼, 배포 점검까지 마쳐 실제 오픈 가능한 상태로 넘깁니다.</p></div></div></div></div>
+  <div class="slide-inner" style="background:var(--light-bg);">
+    <div class="scroll-content px-14 pb-12">
+      <div class="pt-10">
+        <div class="section-pill mb-6" style="background:var(--c100);color:var(--c800);border:1px solid var(--c200)">
+          섹션 6 · 구축 방식
+        </div>
+        <h2 class="font-black mb-8" style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--c800);line-height:1.15;">
+          <span class="heading-line">이런 방식으로 구현합니다</span>
+        </h2>
+        <div class="grid grid-cols-3 gap-5 mb-8">
+          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(30,58,95,.06);">
+            <div class="text-3xl mb-3">🧩</div>
+            <h3 class="font-bold text-base mb-2" style="color:var(--c800)">역할별 화면은 분리하고</h3>
+            <p class="text-sm leading-relaxed" style="color:#475569;">소비자, 인플루언서, 공급사, 운영 관리자 화면을 역할 기준으로 분리해 복잡도를 낮춥니다.</p>
+          </div>
+          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(30,58,95,.06);">
+            <div class="text-3xl mb-3">⚙️</div>
+            <h3 class="font-bold text-base mb-2" style="color:var(--c800)">운영 엔진은 하나로 묶습니다</h3>
+            <p class="text-sm leading-relaxed" style="color:#475569;">상품, 주문, 프로모션, 환불, 정산 로직을 같은 기준으로 묶어 운영 데이터가 갈라지지 않게 합니다.</p>
+          </div>
+          <div class="rounded-2xl p-6" style="background:var(--c800);border:1.5px solid var(--c900);box-shadow:0 10px 28px rgba(30,58,95,.18);">
+            <div class="text-3xl mb-3">📦</div>
+            <h3 class="font-bold text-base mb-2 text-white">외부 연동은 단계적으로 붙입니다</h3>
+            <p class="text-sm leading-relaxed" style="color:var(--c300);">1차는 국내 결제와 내부 정산 원장 중심으로 안정화하고, 해외 지급은 운영 데이터가 잡힌 뒤 확장합니다.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(30,58,95,.06);">
+            <h3 class="font-bold text-lg mb-4" style="color:var(--c800)">해외 지급 확장 방향</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:#475569;">해외 지급은 연구 문서처럼 길게 검토할 문제가 아니라, 오픈 이후 실제 정산 패턴이 보였을 때 붙여야 하는 확장 과제입니다.</p>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="rounded-xl p-4" style="background:var(--c50);border:1px solid var(--c200);">
+                <div class="text-sm font-semibold mb-2" style="color:var(--c800)">Polar</div>
+                <p class="text-xs leading-relaxed" style="color:#475569;">해외 판매와 지급을 함께 볼 수 있는 후보입니다. 2차 검토 대상으로 충분합니다.</p>
+              </div>
+              <div class="rounded-xl p-4" style="background:var(--c50);border:1px solid var(--c200);">
+                <div class="text-sm font-semibold mb-2" style="color:var(--c800)">Payoneer</div>
+                <p class="text-xs leading-relaxed" style="color:#475569;">인플루언서 지급 측면에서 많이 검토되는 축입니다. 법인 구조와 수수료를 함께 봐야 합니다.</p>
+              </div>
+              <div class="rounded-xl p-4" style="background:var(--c800);border:1px solid var(--c900);">
+                <div class="text-sm font-semibold mb-2 text-white">PayPal</div>
+                <p class="text-xs leading-relaxed" style="color:var(--c300);">인지도는 높지만 자동 지급과 운영 편의성은 별도로 검증해야 합니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(30,58,95,.06);">
+            <h3 class="font-bold text-lg mb-4" style="color:var(--c800)">권장 전략</h3>
+            <div class="rounded-xl p-4 mb-4" style="background:var(--c800);border:1px solid var(--c900);">
+              <div class="text-sm font-bold mb-2 text-white">1차 오픈</div>
+              <div class="text-xs leading-relaxed" style="color:var(--c300);">국내 결제, 공급사 운영, 관리자 콘솔, 내부 정산 원장까지 정확히 오픈합니다.</div>
+            </div>
+            <div class="rounded-xl p-4" style="background:var(--c50);border:1px solid var(--c200);">
+              <div class="text-sm font-bold mb-2" style="color:var(--c800)">2차 확장</div>
+              <div class="text-xs leading-relaxed" style="color:#475569;">실제 지급 대상 국가, 빈도, 금액 패턴이 보이면 Polar, Payoneer, PayPal 중 가장 맞는 축을 붙이는 것이 현실적입니다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="slide" id="s9">
-  <div class="slide-inner" style="background:linear-gradient(135deg,#111827 0%, #1f2937 45%, #0f172a 100%);">
-    <div class="scroll-content px-14 pb-12"><div class="pt-10"><div class="section-pill mb-6" style="background:rgba(249,115,22,.14);color:#fdba74;border:1px solid rgba(249,115,22,.28)">Section 6 · 일정</div><h2 class="font-black text-white mb-8" style="font-size:clamp(1.9rem,3.5vw,2.9rem);line-height:1.15;"><span class="heading-line">60일 구현 일정</span></h2><div style="overflow-x:auto;"><div class="rounded-2xl overflow-hidden" style="border:1px solid rgba(255,255,255,.14);min-width:720px;"><table class="tbl"><thead><tr><th style="width:16%">단계</th><th style="width:20%">기간</th><th style="width:30%">핵심 작업</th><th>산출물</th></tr></thead><tbody><tr><td style="color:#fdba74;font-weight:700;">1. 기획 정리</td><td style="color:rgba(255,255,255,.6)">Day 1 - Day 10</td><td>요구사항 확정, 권한 체계, 데이터 모델, 운영 정책 정리</td><td>IA, ERD, 기능 명세, 운영 플로우</td></tr><tr><td style="color:#fdba74;font-weight:700;">2. 소비자 / 인플루언서</td><td style="color:rgba(255,255,255,.6)">Day 11 - Day 24</td><td>랜딩, 상품/결제, 링크 추적, 캠페인 구조 구현</td><td>소비자 웹, 인플루언서 대시보드 1차</td></tr><tr><td style="color:#fdba74;font-weight:700;">3. 공급사 / 관리자</td><td style="color:rgba(255,255,255,.6)">Day 25 - Day 40</td><td>상품/재고/출고, 승인, 주문/클레임/CS 백오피스 구현</td><td>공급사 콘솔, 운영 관리자 콘솔</td></tr><tr><td style="color:#fdba74;font-weight:700;">4. 정산</td><td style="color:rgba(255,255,255,.6)">Day 41 - Day 50</td><td>정산 규칙, 원장, 리포트, 지급 상태, 조정 로그</td><td>정산 관리자, 파트너 정산서</td></tr><tr><td style="color:#fdba74;font-weight:700;">5. QA / 오픈 준비</td><td style="color:rgba(255,255,255,.6)">Day 51 - Day 60</td><td>통합 QA, UAT, 초기 데이터 셋업, 배포, 문서화</td><td>배포본, 운영 매뉴얼, QA 리포트</td></tr></tbody></table></div></div></div></div>
+  <div class="slide-inner" style="background:linear-gradient(135deg,var(--c950) 0%,var(--c800) 100%);">
+    <div class="scroll-content px-14 pb-12">
+      <div class="pt-10">
+        <div class="section-pill mb-6" style="background:rgba(96,165,250,.15);color:var(--c300);border:1px solid rgba(96,165,250,.3)">
+          섹션 7 · 일정
+        </div>
+        <h2 class="font-black text-white mb-8" style="font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.15;">
+          <span class="heading-line">60일 구현 일정</span>
+        </h2>
+        <div style="overflow-x:auto;">
+          <div class="rounded-2xl overflow-hidden" style="border:1px solid rgba(255,255,255,.14);min-width:720px;">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th style="width:16%">단계</th>
+                  <th style="width:20%">기간</th>
+                  <th style="width:30%">핵심 작업</th>
+                  <th>산출물</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="color:var(--c300);font-weight:700;">1. 구조 확정</td>
+                  <td style="color:rgba(255,255,255,.62)">Day 1 - Day 10</td>
+                  <td>요구사항 정리, 역할/권한, 데이터 모델, 운영 정책 확정</td>
+                  <td>화면 구조도, 기능 명세, 정산 기준 초안</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--c300);font-weight:700;">2. 소비자 / 인플루언서</td>
+                  <td style="color:rgba(255,255,255,.62)">Day 11 - Day 24</td>
+                  <td>랜딩, 상품, 결제, 링크 추적, 인플루언서 성과 화면 구현</td>
+                  <td>소비자 웹, 인플루언서 대시보드 1차</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--c300);font-weight:700;">3. 공급사 / 관리자</td>
+                  <td style="color:rgba(255,255,255,.62)">Day 25 - Day 40</td>
+                  <td>상품, 재고, 출고, 승인, 주문, CS, 예외 처리 백오피스 구현</td>
+                  <td>공급사 콘솔, 운영 관리자 콘솔</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--c300);font-weight:700;">4. 정산</td>
+                  <td style="color:rgba(255,255,255,.62)">Day 41 - Day 50</td>
+                  <td>정산 규칙, 원장, 리포트, 지급 상태, 조정 로그 반영</td>
+                  <td>정산 관리자, 파트너별 정산서</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--c300);font-weight:700;">5. QA / 오픈 준비</td>
+                  <td style="color:rgba(255,255,255,.62)">Day 51 - Day 60</td>
+                  <td>통합 QA, UAT, 초기 데이터 셋업, 배포, 운영 가이드 정리</td>
+                  <td>배포본, 운영 문서, QA 리포트</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="slide" id="s10">
-  <div class="slide-inner" style="background:var(--sand);">
-    <div class="scroll-content px-14 pb-12"><div class="pt-10"><div class="section-pill mb-6" style="background:var(--c100);color:var(--c800);border:1px solid var(--c200)">Section 7 · 팀 경험</div><h2 class="font-black mb-8" style="font-size:clamp(1.9rem,3.5vw,2.9rem);color:var(--c800);line-height:1.15;"><span class="heading-line">프로젝트 수행 팀</span></h2><div class="grid grid-cols-2 gap-6 mb-8"><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(124,45,18,.08);"><div class="w-14 h-14 rounded-full flex items-center justify-center text-2xl font-black mb-4" style="background:#fdba74;color:#7c2d12">J</div><h3 class="font-bold text-base mb-1" style="color:var(--c800)">Jamie</h3><p class="text-xs font-semibold mb-3" style="color:var(--c700)">Project Lead / Product Engineer</p><ul class="text-xs space-y-1.5 leading-relaxed" style="color:#475569;"><li>· 올웨이즈 커머스 초기 멤버로 핵심 흐름 구축</li><li>· 미국 진출 MVP 작업 경험으로 해외 이커머스 감각 보유</li><li>· 티켓매치, 두잇을 통한 다자간 정산/운영 경험</li></ul></div><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(124,45,18,.08);"><div class="w-14 h-14 rounded-full flex items-center justify-center text-2xl font-black mb-4" style="background:#fdba74;color:#7c2d12">T</div><h3 class="font-bold text-base mb-1" style="color:var(--c800)">Tom</h3><p class="text-xs font-semibold mb-3" style="color:var(--c700)">Commerce Architect / Lead Engineer</p><ul class="text-xs space-y-1.5 leading-relaxed" style="color:#475569;"><li>· 前 쿠팡 리드 엔지니어 출신</li><li>· 15년+ 이커머스 아키텍처 및 대규모 운영 경험</li><li>· 주문/정산/운영 백엔드 설계 책임</li></ul></div><div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(124,45,18,.08);"><div class="w-14 h-14 rounded-full flex items-center justify-center text-2xl font-black mb-4" style="background:#fdba74;color:#7c2d12">Jn</div><h3 class="font-bold text-base mb-1" style="color:var(--c800)">Joon</h3><p class="text-xs font-semibold mb-3" style="color:var(--c700)">Backend / Data Engineer</p><ul class="text-xs space-y-1.5 leading-relaxed" style="color:#475569;"><li>· 정산 원장, 리포트, 데이터 파이프라인 설계</li><li>· 대량 데이터 정합성 검증 및 운영 리포트 경험</li><li>· 분석/배치/정산 도메인 구현 담당</li></ul></div><div class="rounded-2xl p-6" style="background:linear-gradient(135deg,#9a3412,#c2410c);border:1.5px solid #9a3412;box-shadow:0 12px 28px rgba(124,45,18,.2);"><div class="w-14 h-14 rounded-full flex items-center justify-center text-2xl font-black mb-4" style="background:#fdba74;color:#7c2d12">A</div><h3 class="font-bold text-base mb-1 text-white">Alex + QA Support</h3><p class="text-xs font-semibold mb-3" style="color:#fdba74">Frontend / UI Delivery</p><ul class="text-xs space-y-1.5 leading-relaxed" style="color:#fed7aa;"><li>· 사용자/운영 콘솔 UI 구현 및 반응형 품질 관리</li><li>· UAT 체크리스트, 운영자 핸드오프 자료 정리</li><li>· 런칭 직전 QA 및 화면 보정 지원</li></ul></div></div></div></div>
+  <div class="slide-inner" style="background:var(--light-bg);">
+    <div class="scroll-content px-14 pb-12">
+      <div class="pt-10">
+        <div class="section-pill mb-6" style="background:var(--c100);color:var(--c800);border:1px solid var(--c200)">
+          섹션 8 · 리스크와 지원
+        </div>
+        <h2 class="font-black mb-8" style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--c800);line-height:1.15;">
+          <span class="heading-line">리스크 대응과 오픈 후 지원</span>
+        </h2>
+        <div class="grid grid-cols-2 gap-6 mb-8">
+          <div class="rounded-2xl p-6" style="background:#fff;border:1.5px solid var(--c200);box-shadow:0 8px 24px rgba(30,58,95,.06);">
+            <h3 class="font-bold text-lg mb-4" style="color:var(--c800)">주요 리스크와 대응</h3>
+            <ul class="space-y-4">
+              <li>
+                <div class="text-sm font-semibold" style="color:var(--c800)">인플루언서 캠페인 급증 시 재고 불일치</div>
+                <div class="text-xs mt-1" style="color:#64748b">안전재고와 품절 우선순위, 관리자 알림으로 흡수합니다.</div>
+              </li>
+              <li>
+                <div class="text-sm font-semibold" style="color:var(--c800)">정산 분쟁과 수기 조정 증가</div>
+                <div class="text-xs mt-1" style="color:#64748b">정산 공식 버전과 조정 로그를 남겨 누락과 재해석을 줄입니다.</div>
+              </li>
+              <li>
+                <div class="text-sm font-semibold" style="color:var(--c800)">환불과 클레임이 잦은 캠페인 운영</div>
+                <div class="text-xs mt-1" style="color:#64748b">클레임 상태와 지급 보류 정책을 초기 범위에 포함합니다.</div>
+              </li>
+              <li>
+                <div class="text-sm font-semibold" style="color:var(--c800)">공급사 데이터 품질 편차</div>
+                <div class="text-xs mt-1" style="color:#64748b">상품 등록 검수, 필수 입력 검증, 관리자 승인 흐름으로 막습니다.</div>
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-2xl p-6" style="background:var(--c800);border:1.5px solid var(--c900);box-shadow:0 10px 28px rgba(30,58,95,.18);">
+            <h3 class="font-bold text-lg mb-4 text-white">오픈 후 지원</h3>
+            <ul class="space-y-4">
+              <li>
+                <div class="text-sm font-semibold text-white">무상보수 12개월</div>
+                <div class="text-xs mt-1" style="color:var(--c300)">런칭 후 기능 오동작, 운영 중 발견된 결함, 안정화 이슈를 포함합니다.</div>
+              </li>
+              <li>
+                <div class="text-sm font-semibold text-white">운영 문의 대응</div>
+                <div class="text-xs mt-1" style="color:var(--c300)">운영팀 사용 가이드, 관리자 화면 문의, 정산 확인 요청에 대응합니다.</div>
+              </li>
+              <li>
+                <div class="text-sm font-semibold text-white">초기 집중 점검</div>
+                <div class="text-xs mt-1" style="color:var(--c300)">오픈 직후 핵심 지표와 예외 케이스를 집중 확인합니다.</div>
+              </li>
+              <li>
+                <div class="text-sm font-semibold text-white">확장 요청 별도 협의</div>
+                <div class="text-xs mt-1" style="color:var(--c300)">신규 기능 확장은 별도 협의하되, 기존 범위 내 보완은 무상 기간 내 우선 처리합니다.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="slide" id="s11">
-  <div class="slide-inner" style="background:linear-gradient(135deg,#111827 0%, #1f2937 45%, #0f172a 100%);">
-    <div class="scroll-content px-14 pb-12"><div class="pt-10"><div class="section-pill mb-6" style="background:rgba(249,115,22,.14);color:#fdba74;border:1px solid rgba(249,115,22,.28)">Section 8 · 리스크 / 정산 제안 / 지원</div><h2 class="font-black text-white mb-8" style="font-size:clamp(1.9rem,3.5vw,2.9rem);line-height:1.15;"><span class="heading-line">리스크와 대응, 그리고 운영 지원</span></h2><div class="grid grid-cols-2 gap-6 mb-8"><div class="rounded-2xl p-6" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><h3 class="font-bold text-white text-lg mb-4">주요 리스크와 대응</h3><ul class="space-y-4"><li><div class="text-sm font-semibold text-white">인플루언서 캠페인 급증 시 재고 불일치</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.58)">안전재고 정책, 품절 처리 우선순위, 운영 알림으로 방지</div></li><li><div class="text-sm font-semibold text-white">정산 분쟁과 수기 조정 증가</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.58)">정산 공식 버전 관리, 주문 원장/지급 원장 분리, 조정 로그 기록</div></li><li><div class="text-sm font-semibold text-white">환불/교환이 잦은 캠페인 운영</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.58)">클레임 상태머신과 지급 보류 정책을 초기 범위에 포함</div></li><li><div class="text-sm font-semibold text-white">공급사 데이터 품질 편차</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.58)">등록 검수, 필수 필드 검증, 관리자 승인 단계로 흡수</div></li></ul></div><div class="rounded-2xl p-6" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.28);"><h3 class="font-bold text-white text-lg mb-4">유지보수 / 지원 체계</h3><ul class="space-y-4"><li><div class="text-sm font-semibold text-white">12개월 무상 유지보수</div><div class="text-xs mt-1" style="color:#fed7aa">런칭 후 안정화 이슈, 기능 오동작, 운영 중 발견된 결함 수정 포함</div></li><li><div class="text-sm font-semibold text-white">운영 문의 대응</div><div class="text-xs mt-1" style="color:#fed7aa">운영팀 질의 대응, 관리자 사용 가이드, 정산 이슈 확인 지원</div></li><li><div class="text-sm font-semibold text-white">정기 점검</div><div class="text-xs mt-1" style="color:#fed7aa">배포 후 초기 안정화 기간 집중 모니터링, 월간 체크 포인트 운영</div></li><li><div class="text-sm font-semibold text-white">확장 요청 대응</div><div class="text-xs mt-1" style="color:#fed7aa">신규 기능 확장은 별도 협의, 기존 범위 내 보완은 무상 기간 내 우선 대응</div></li></ul></div></div><div class="rounded-2xl p-6 mb-8" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);"><h3 class="font-bold text-white text-lg mb-4">해외 송금/정산 연동 방향 제안</h3><div class="grid grid-cols-3 gap-4 mb-4"><div class="rounded-xl p-4" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);"><div class="text-sm font-semibold text-white mb-2">Polar (MoR)</div><p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.62);">공식 문서 기준 한국 포함 다수 국가 payout 지원이 확인됩니다. 해외 판매·세금 부담을 줄이는 방향으로 검토 가치가 큽니다.</p></div><div class="rounded-xl p-4" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);"><div class="text-sm font-semibold text-white mb-2">PayPal</div><p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.62);">한국 비즈니스 계정 기반 결제 수취는 가능해 보이지만, 대량 인플루언서 지급/자동 정산은 추가 검증이 더 필요합니다.</p></div><div class="rounded-xl p-4" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.28);"><div class="text-sm font-semibold text-white mb-2">Payoneer / Stripe Atlas</div><p class="text-xs leading-relaxed" style="color:#fed7aa;">후보군으로 검토하되, 한국 법인 연동 조건·수수료·자동 지급 API 범위는 착수 전 상세 확인이 필요합니다.</p></div></div><p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.62);">제안 방향은 <strong style="color:#fdba74;">1차 오픈은 국내 결제 + 내부 정산 원장 중심</strong>으로 안정적으로 만들고, 이후 해외 지급 API는 Payoneer / PayPal / Polar 중 수수료와 법인 연동 가능성을 비교해 단계적으로 붙이는 것입니다.</p></div></div></div>
+  <div class="slide-inner" style="background:linear-gradient(135deg,var(--c950) 0%,var(--c800) 100%);">
+    <div class="flex flex-col justify-center flex-1 px-14 pb-8 pt-10">
+      <div class="section-pill mb-6" style="background:rgba(96,165,250,.15);color:var(--c300);border:1px solid rgba(96,165,250,.3)">
+        섹션 9 · 조건
+      </div>
+      <h2 class="font-black text-white mb-6" style="font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.15;">
+        <span class="heading-line">제안 조건</span>
+      </h2>
+      <div class="text-center mb-8">
+        <div class="text-5xl font-black" style="color:var(--c400)">3천5백만원</div>
+        <div class="text-sm mt-2" style="color:rgba(255,255,255,.52)">전체 구축 기준 금액</div>
+      </div>
+      <div class="grid grid-cols-3 gap-5 mb-8">
+        <div class="rounded-xl p-5" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);">
+          <div class="text-xs mb-1" style="color:rgba(255,255,255,.52)">개발 기간</div>
+          <div class="text-2xl font-black text-white">60일</div>
+          <div class="text-xs mt-1" style="color:var(--c300)">기획, 구현, QA, 배포 포함</div>
+        </div>
+        <div class="rounded-xl p-5" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);">
+          <div class="text-xs mb-1" style="color:rgba(255,255,255,.52)">사후 지원</div>
+          <div class="text-2xl font-black text-white">무상보수 12개월</div>
+          <div class="text-xs mt-1" style="color:var(--c300)">오픈 후 안정화 지원</div>
+        </div>
+        <div class="rounded-xl p-5" style="background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.28);">
+          <div class="text-xs mb-1" style="color:var(--c300)">범위 기준</div>
+          <div class="text-2xl font-black text-white">풀스코프 구축</div>
+          <div class="text-xs mt-1" style="color:var(--c300)">소비자 · 인플루언서 · 공급사 · 관리자 · 정산</div>
+        </div>
+      </div>
+      <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);">
+        <div class="grid grid-cols-2 gap-6">
+          <div>
+            <div class="text-sm font-bold text-white mb-3">포함 사항</div>
+            <ul class="text-sm space-y-2" style="color:rgba(255,255,255,.68);">
+              <li>· 역할별 화면 설계 및 구현</li>
+              <li>· 정산 원장과 관리자 콘솔</li>
+              <li>· QA, UAT, 배포 지원</li>
+            </ul>
+          </div>
+          <div>
+            <div class="text-sm font-bold text-white mb-3">전달 기준</div>
+            <ul class="text-sm space-y-2" style="color:rgba(255,255,255,.68);">
+              <li>· 운영팀이 바로 사용할 수 있는 상태</li>
+              <li>· 초기 데이터 반영과 기본 가이드 포함</li>
+              <li>· 2차 확장을 고려한 구조 설계</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="slide" id="s12">
-  <div class="slide-inner" style="background:radial-gradient(circle at top right, rgba(249,115,22,.24), transparent 30%),linear-gradient(145deg, #020617 0%, #111827 50%, #1f2937 100%);">
-    <div class="flex flex-col justify-center flex-1 px-14 pb-8 pt-10"><div class="section-pill mb-6" style="background:rgba(249,115,22,.14);color:#fdba74;border:1px solid rgba(249,115,22,.28)">Section 9 · 조건</div><h2 class="font-black text-white mb-6" style="font-size:clamp(1.9rem,3.5vw,2.9rem);line-height:1.15;"><span class="heading-line">조건</span></h2><div class="text-center mb-8"><div class="text-5xl font-black" style="color:#fdba74">3천5백만원</div><div class="text-sm mt-2" style="color:rgba(255,255,255,.52)">전체 구축 기준 금액</div></div><div class="grid grid-cols-3 gap-5 mb-8"><div class="rounded-xl p-5" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);"><div class="text-xs mb-1" style="color:rgba(255,255,255,.52)">납기</div><div class="text-2xl font-black text-white">60일</div><div class="text-xs mt-1" style="color:#fdba74">기획, 구현, QA, 배포 포함</div></div><div class="rounded-xl p-5" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);"><div class="text-xs mb-1" style="color:rgba(255,255,255,.52)">무상 유지보수</div><div class="text-2xl font-black text-white">12개월</div><div class="text-xs mt-1" style="color:#fdba74">런칭 후 운영 안정화 지원</div></div><div class="rounded-xl p-5" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.28);"><div class="text-xs mb-1" style="color:#fdba74">범위 기준</div><div class="text-2xl font-black text-white">전체 구축</div><div class="text-xs mt-1" style="color:#fed7aa">소비자 + 인플루언서 + 공급사 + 관리자 + 정산</div></div></div></div>
+  <div class="slide-inner" style="background:radial-gradient(circle at top right, rgba(96,165,250,.22), transparent 30%),linear-gradient(145deg,var(--c950) 0%,var(--c800) 55%,var(--c900) 100%);">
+    <div class="flex flex-col items-center justify-center flex-1 text-center px-8">
+      <div class="section-pill mb-8" style="background:rgba(96,165,250,.15);color:var(--c300);border:1px solid rgba(96,165,250,.3)">
+        마무리
+      </div>
+      <h1 class="font-black text-white mb-5" style="font-size:clamp(2.1rem,5vw,3.9rem);line-height:1.12;letter-spacing:-1px;">
+        링크 유입에서 정산까지,<br>실제로 운영되는 플랫폼으로 만들겠습니다
+      </h1>
+      <div class="h-px w-56 mb-6" style="background:linear-gradient(90deg,transparent,var(--c400),transparent)"></div>
+      <p class="text-lg font-light mb-10 max-w-3xl" style="color:rgba(255,255,255,.75);line-height:1.8;">
+        이번 제안은 보기 좋은 화면 제작안이 아닙니다. Jamie의 운영 감각과 Tom의 커머스 아키텍처 경험으로, 오픈 이후에도 버티는 구조를 전제로 제안드립니다.
+      </p>
+      <div class="flex gap-8 flex-wrap justify-center">
+        <a href="./portfolio.html" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 24px;border-radius:16px;background:linear-gradient(135deg,var(--c300),var(--c500));color:#111827;text-decoration:none;font-weight:800;box-shadow:0 16px 32px rgba(37,99,235,.28);">관련 포트폴리오 보기</a>
+        <a href="./index.html" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 24px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;text-decoration:none;font-weight:700;">제안서 홈으로</a>
+      </div>
+    </div>
+    <div class="pb-12 text-center">
+      <p class="text-xs" style="color:rgba(255,255,255,.32);letter-spacing:1px;">© 2026 원클릭사이트제작</p>
+    </div>
   </div>
-</div>
-
-<div class="slide" id="s13">
-  <div class="slide-inner" style="background:radial-gradient(circle at top left, rgba(249,115,22,.24), transparent 30%),radial-gradient(circle at bottom right, rgba(20,184,166,.16), transparent 24%),linear-gradient(145deg, #020617 0%, #111827 52%, #1f2937 100%);"><div class="flex flex-col items-center justify-center flex-1 text-center px-8"><div class="section-pill mb-8" style="background:rgba(249,115,22,.14);color:#fdba74;border:1px solid rgba(249,115,22,.28)">마무리</div><h1 class="font-black text-white mb-5" style="font-size:clamp(2.2rem,5vw,4rem);line-height:1.12;letter-spacing:-1px;">인플루언서 유입에서 정산까지,<br>실제로 운영되는 플랫폼으로 완성하겠습니다</h1><div class="h-px w-56 mb-6" style="background:linear-gradient(90deg,transparent,#fb923c,transparent)"></div><p class="text-lg font-light mb-10 max-w-3xl" style="color:rgba(255,255,255,.75);line-height:1.8;">이번 제안은 보여주기용 데모가 아니라 오픈과 운영을 전제로 한 구축안입니다. 관련 포트폴리오는 별도 페이지에서 확인하실 수 있습니다.</p><div class="flex gap-8 flex-wrap justify-center"><a href="./portfolio.html" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 24px;border-radius:16px;background:linear-gradient(135deg,#fdba74,#f97316);color:#111827;text-decoration:none;font-weight:800;box-shadow:0 16px 32px rgba(249,115,22,.28);">관련 포트폴리오 보기</a><a href="./index.html" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 24px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;text-decoration:none;font-weight:700;">제안서 홈으로</a></div></div><div class="pb-12 text-center"><p class="text-xs" style="color:rgba(255,255,255,.32);letter-spacing:1px;">© 2026 원클릭사이트제작</p></div></div>
 </div>
 
 </div>
 
 <div id="nav">
   <button class="nav-btn" id="btn-prev" onclick="navigate(-1)" title="이전">&#8592;</button>
-  <span id="counter">1 / 13</span>
+  <span id="counter">1 / 12</span>
   <button class="nav-btn" id="btn-next" onclick="navigate(1)" title="다음">&#8594;</button>
 </div>
 
@@ -406,6 +888,7 @@
   const slides = document.querySelectorAll('.slide');
   const total = slides.length;
   let current = 0;
+
   function goTo(idx) {
     if (idx < 0 || idx >= total) return;
     const prev = current;
@@ -418,23 +901,30 @@
     document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
     document.getElementById('progress-bar').style.width = (((current + 1) / total) * 100) + '%';
   }
+
   window.navigate = function(dir) { goTo(current + dir); };
+
   document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); navigate(1); }
     if (e.key === 'ArrowLeft') { e.preventDefault(); navigate(-1); }
     if (e.key === 'Home') { e.preventDefault(); goTo(0); }
     if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
   });
+
   let touchStartX = 0;
-  document.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
   document.addEventListener('touchend', function(e) {
     const dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
   }, { passive: true });
+
   document.getElementById('deck').addEventListener('click', function(e) {
     if (e.target.closest('#nav') || e.target.closest('.nav-btn') || e.target.closest('a')) return;
     navigate(e.clientX > window.innerWidth / 2 ? 1 : -1);
   });
+
   goTo(0);
 })();
 </script>
