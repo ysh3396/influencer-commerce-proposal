@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Influencer Commerce Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1220;
+    --panel: rgba(15, 23, 42, 0.72);
+    --line: rgba(255, 255, 255, 0.12);
+    --text: #f8fafc;
+    --muted: #cbd5e1;
+    --accent: #f97316;
+    --accent-soft: #ffedd5;
+    --accent-2: #14b8a6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Noto Sans KR", sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at top left, rgba(249, 115, 22, 0.22), transparent 32%),
+      radial-gradient(circle at top right, rgba(20, 184, 166, 0.18), transparent 30%),
+      linear-gradient(135deg, #020617 0%, #0f172a 55%, #111827 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+  .shell {
+    width: min(960px, 100%);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    background: var(--panel);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 24px 80px rgba(2, 6, 23, 0.45);
+    overflow: hidden;
+  }
+  .hero {
+    padding: 56px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fed7aa;
+    background: rgba(249, 115, 22, 0.14);
+    border: 1px solid rgba(249, 115, 22, 0.28);
+  }
+  h1 {
+    margin: 24px 0 16px;
+    font-size: clamp(32px, 5vw, 58px);
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+  }
+  .lead {
+    max-width: 720px;
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--muted);
+  }
+  .accent { color: #fdba74; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 34px 0;
+  }
+  .metric {
+    padding: 20px 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+  }
+  .metric strong {
+    display: block;
+    font-size: 24px;
+    color: #fff;
+    letter-spacing: -0.03em;
+  }
+  .metric span {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    padding: 15px 22px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn-primary {
+    color: #111827;
+    background: linear-gradient(135deg, #fdba74, #f97316);
+    box-shadow: 0 14px 30px rgba(249, 115, 22, 0.28);
+  }
+  .btn-secondary {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--line);
+  }
+  .footer {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 18px;
+    padding: 0 56px 56px;
+  }
+  .note, .setup {
+    padding: 22px 24px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+  }
+  .title {
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .note p, .setup p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+  @media (max-width: 900px) {
+    .metrics,
+    .footer {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .hero,
+    .footer {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .hero { padding-top: 32px; }
+    .metrics,
+    .footer {
+      grid-template-columns: 1fr;
+    }
+    .lead {
+      font-size: 16px;
+    }
+    .btn {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="badge">Project Proposal · 2026.04</div>
+      <h1>미국 인플루언서 연계<br><span class="accent">Reverse Direct-Commerce Platform</span></h1>
+      <p class="lead">
+        한국 소비자를 대상으로 한 콘텐츠 기반 커머스 플랫폼 제안서입니다.
+        인플루언서 링크 유입, 벤더 운영, 관리자 콘솔, 정산 시스템까지 포함하는
+        <strong class="accent">풀스코프 구축안</strong>을 정리했습니다.
+      </p>
+
+      <div class="metrics">
+        <div class="metric"><strong>35,000,000 KRW</strong><span>제안 금액</span></div>
+        <div class="metric"><strong>60 Days</strong><span>납기</span></div>
+        <div class="metric"><strong>12 Months</strong><span>무상 유지보수</span></div>
+        <div class="metric"><strong>Full Scope</strong><span>MVP 축소 없이 전체 범위</span></div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="./presentation.html">제안서 보기</a>
+        <a class="btn btn-secondary" href="./portfolio.html">관련 포트폴리오 보기</a>
+      </div>
+    </section>
+
+    <section class="footer">
+      <div class="note">
+        <p class="title">Proposal Focus</p>
+        <p>
+          소비자 구매 경험, 인플루언서 어트리뷰션, 벤더 상품/재고/출고 운영, 운영자 승인/검수,
+          정산 원장과 지급 리포트, 런칭 이후 안정화 체계까지 하나의 운영 가능한 플랫폼으로 설계했습니다.
+        </p>
+      </div>
+      <div class="setup">
+        <p class="title">Files</p>
+        <p>`presentation.html` 슬라이드 제안서<br>`portfolio.html` 관련 사례 중심 포트폴리오</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
